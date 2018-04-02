@@ -1,0 +1,369 @@
+/* Extra Large Devices, Wide Screens */
+@media only screen and (min-width : 1201px) {
+    
+/* COLUMN SETUP */
+    
+    .rw .cl.xl1 {
+        width: var(--col-1);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl2 {
+        width: var(--col-2);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl3 {
+        width: var(--col-3);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl4 {
+        width: var(--col-4);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl5 {
+        width: var(--col-5);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl6 {
+        width: var(--col-6);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl7 {
+        width: var(--col-7);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl8 {
+        width: var(--col-8);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl9 {
+        width: var(--col-9);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl10 {
+        width: var(--col-10);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl11 {
+        width: var(--col-11);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl12 {
+        width: var(--col-12);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl13 {
+        width: var(--col-13);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl14 {
+        width: var(--col-14);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl15 {
+        width: var(--col-15);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl16 {
+        width: var(--col-16);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl17 {
+        width: var(--col-17);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl18 {
+        width: var(--col-18);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl19 {
+        width: var(--col-19);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl20 {
+        width: var(--col-20);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl21 {
+        width: var(--col-21);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl22 {
+        width: var(--col-22);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl23 {
+        width: var(--col-23);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    .rw .cl.xl24 {
+        width: var(--col-24);
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+    
+/* PUSH, PULL, OFFEST SETTINGS */
+    
+    .rw .cl.off-xl1 {
+      margin-left: var(--col-1);
+    }
+    .rw .cl.pull-xl1 {
+      right: var(--col-1);
+    }
+    .rw .cl.push-xl1 {
+      left: var(--col-1);
+    }
+    .rw .cl.off-xl2 {
+      margin-left: var(--col-2);
+    }
+    .rw .cl.pull-xl2 {
+      right: var(--col-2);
+    }
+    .rw .cl.push-xl2 {
+      left: var(--col-2);
+    }
+    .rw .cl.off-xl3 {
+      margin-left: var(--col-3);
+    }
+    .rw .cl.pull-xl3 {
+      right: var(--col-3);
+    }
+    .rw .cl.push-xl3 {
+      left: var(--col-3);
+    }
+    .rw .cl.off-xl4 {
+      margin-left: var(--col-4);
+    }
+    .rw .cl.pull-xl4 {
+      right: var(--col-4);
+    }
+    .rw .cl.push-xl4 {
+      left: var(--col-4);
+    }
+    .rw .cl.off-xl5 {
+      margin-left: var(--col-5);
+    }
+    .rw .cl.pull-xl5 {
+      right: var(--col-5);
+    }
+    .rw .cl.push-xl5 {
+      left: var(--col-5);
+    }
+    .rw .cl.off-xl6 {
+      margin-left: var(--col-6);
+    }
+    .rw .cl.pull-xl6 {
+      right: var(--col-6);
+    }
+    .rw .cl.push-xl6 {
+      left: var(--col-6);
+    }
+    .rw .cl.off-xl7 {
+      margin-left: var(--col-7);
+    }
+    .rw .cl.pull-xl7 {
+      right: var(--col-7);
+    }
+    .rw .cl.push-xl7 {
+      left: var(--col-7);
+    }
+    .rw .cl.off-xl8 {
+      margin-left: var(--col-8);
+    }
+    .rw .cl.pull-xl8 {
+      right: var(--col-8);
+    }
+    .rw .cl.push-xl8 {
+      left: var(--col-8);
+    }
+    .rw .cl.off-xl9 {
+      margin-left: var(--col-9);
+    }
+    .rw .cl.pull-xl9 {
+      right: var(--col-9);
+    }
+    .rw .cl.push-xl9 {
+      left: var(--col-9);
+    }
+    .rw .cl.off-xl10 {
+      margin-left: var(--col-10);
+    }
+    .rw .cl.pull-xl10 {
+      right: var(--col-10);
+    }
+    .rw .cl.push-xl10 {
+      left: var(--col-10);
+    }
+    .rw .cl.off-xl11 {
+      margin-left: var(--col-11);
+    }
+    .rw .cl.pull-xl11 {
+      right: var(--col-11);
+    }
+    .rw .cl.push-xl11 {
+      left: var(--col-11);
+    }
+    .rw .cl.off-xl12 {
+      margin-left: var(--col-12);
+    }
+    .rw .cl.pull-xl12 {
+      right: var(--col-12);
+    }
+    .rw .cl.push-xl12 {
+      left: var(--col-12);
+    }
+    .rw .cl.off-xl13 {
+      margin-left: var(--col-13);
+    }
+    .rw .cl.pull-xl13 {
+      right: var(--col-13);
+    }
+    .rw .cl.push-xl13 {
+      left: var(--col-13);
+    }
+    .rw .cl.off-xl14 {
+      margin-left: var(--col-14);
+    }
+    .rw .cl.pull-xl14 {
+      right: var(--col-14);
+    }
+    .rw .cl.push-xl14 {
+      left: var(--col-14);
+    }
+    .rw .cl.off-xl15 {
+      margin-left: var(--col-15);
+    }
+    .rw .cl.pull-xl15 {
+      right: var(--col-15);
+    }
+    .rw .cl.push-xl15 {
+      left: var(--col-15);
+    }
+    .rw .cl.off-xl16 {
+      margin-left: var(--col-16);
+    }
+    .rw .cl.pull-xl16 {
+      right: var(--col-16);
+    }
+    .rw .cl.push-xl16 {
+      left: var(--col-16);
+    }
+    .rw .cl.off-xl17 {
+      margin-left: var(--col-17);
+    }
+    .rw .cl.pull-xl17 {
+      right: var(--col-17);
+    }
+    .rw .cl.push-xl17 {
+      left: var(--col-17);
+    }
+    .rw .cl.off-xl18 {
+      margin-left: var(--col-18);
+    }
+    .rw .cl.pull-xl18 {
+      right: var(--col-18);
+    }
+    .rw .cl.push-xl18 {
+      left: var(--col-18);
+    }
+    .rw .cl.off-xl19 {
+      margin-left: var(--col-19);
+    }
+    .rw .cl.pull-xl19 {
+      right: var(--col-19);
+    }
+    .rw .cl.push-xl19 {
+      left: var(--col-19);
+    }
+    .rw .cl.off-xl20 {
+      margin-left: var(--col-20);
+    }
+    .rw .cl.pull-xl20 {
+      right: var(--col-20);
+    }
+    .rw .cl.push-xl20 {
+      left: var(--col-20);
+    }
+    .rw .cl.off-xl21 {
+      margin-left: var(--col-21);
+    }
+    .rw .cl.pull-xl21 {
+      right: var(--col-21);
+    }
+    .rw .cl.push-xl21 {
+      left: var(--col-21);
+    }
+    .rw .cl.off-xl22 {
+      margin-left: var(--col-22);
+    }
+    .rw .cl.pull-xl22 {
+      right: var(--col-22);
+    }
+    .rw .cl.push-xl22 {
+      left: var(--col-22);
+    }
+    .rw .cl.off-xl23 {
+      margin-left: var(--col-23);
+    }
+    .rw .cl.pull-xl23 {
+      right: var(--col-23);
+    }
+    .rw .cl.push-xl23 {
+      left: var(--col-23);
+    }
+    .rw .cl.off-xl24 {
+      margin-left: var(--col-24);
+    }
+    .rw .cl.pull-xl24 {
+      right: var(--col-24);
+    }
+    .rw .cl.push-xl24 {
+      left: var(--col-24);
+    }
+}
