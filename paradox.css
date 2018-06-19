@@ -379,9 +379,12 @@ ul:not(.browser-default) > li {
 }
 
 @media only screen and (max-width: 992px) {
-  .show-medium-down {
-    display: block !important;
-  }
+  	.show-medium-down {
+    	display: block !important;
+  	}
+	.hide-large-up{
+		display: none !important;
+	}
 }
 
 @media only screen and (max-width: 600px) {

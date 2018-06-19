@@ -42,6 +42,10 @@
 .no-pad {
   padding: 0 !important;
 }
+.no-overflow {
+	overflow: hidden;
+	white-space: nowrap;
+}
 .full-height {
 	float: left;
 	position: absolute;
