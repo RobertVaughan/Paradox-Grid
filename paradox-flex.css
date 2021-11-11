@@ -78,153 +78,28 @@ body {
   flex-direction: row-reverse;
 }
 
-.cl.reverse {
-  -ms-flex-direction: column-reverse;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: reverse;
-  flex-direction: column-reverse;
-}
 
 
-
-/*.rw {
-	display: flex;
-	flex-direction: row;
-}
-
-.cl {
-	flex: 1;
-}
-
-.cl-1 {
-	width: var(--col-1);
-}
-.cl-2 {
-	width: var(--col-2);
-}
-.cl-3 {
-	width: var(--col-3);
-}
-.cl-20 {
-	width: var(--col-20);
-}
-.cl-24 {
-	width: var(--col-24);
-}*/
-.appTitle {
-	font-family: Acherus,sans-serif; 
-	font-size: 30px; 
-	font-weight: 900; 
-	line-height: 45px;
-	min-height: 45px;
-}
-.titleRow {
-	background-color: var(--vt-black); 
-	color: var(--vt-white); 
-	height: 45px; 
-	min-height: 45px;
-}
-.buttonStyle {
-	font-size: 30px; 
-	line-height: 45px; 
-	padding-right: 15px;
-}
-
-/* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 200px) and (max-device-width : 575px){
-/* Styles */
-	.appTitle {
-		line-height: 90px;
-		font-size: 60px;
-	}
-	.titleRow {
-		height: 90px; 
-		min-height: 90px;
-	}
-	.buttonStyle {
-		font-size: 60px; 
-		line-height: 90px; 
-		padding-right: 15px;
-	}
 
 }
 
 @media only screen and (min-device-width : 576px) and (max-device-width : 767px) {
-		.appTitle {
-		line-height: 90px;
-		font-size: 60px;
-	}
-	.titleRow {
-		height: 90px; 
-		min-height: 90px;
-	}
-	.buttonStyle {
-		font-size: 60px; 
-		line-height: 90px; 
-		padding-right: 15px;
-	}
+
 }
 
 @media only screen and (min-device-width : 768px) and (max-device-width : 991px) {
-		.appTitle {
-		line-height: 55px;
-		font-size: 40px;
-	}
-	.titleRow {
-		height: 55px; 
-		min-height: 55px;
-	}
-	.buttonStyle {
-		font-size: 40px; 
-		line-height: 55px; 
-		padding-right: 15px;
-	}
+
 }
 
 @media only screen and (min-device-width : 992px) and (max-device-width : 1199px) {
-		.appTitle {
-		line-height: 45px;
-		font-size: 30px;
-	}
-	.titleRow {
-		height: 45px; 
-		min-height: 45px;
-	}
-	.buttonStyle {
-		font-size: 30px; 
-		line-height: 45px; 
-		padding-right: 15px;
-	}
+
 }
 
 @media only screen and (min-device-width : 1200px) and (max-device-width : 1399px) {
-	.appTitle {
-		line-height: 45px;
-		font-size: 30px;
-	}
-	.titleRow {
-		height: 45px; 
-		min-height: 45px;
-	}
-	.buttonStyle {
-		font-size: 30px; 
-		line-height: 45px; 
-		padding-right: 15px;
-	}
+
 }
 
 @media only screen and (min-device-width : 1400px) {
-		.appTitle {
-		line-height: 75px;
-		font-size: 55px;
-	}
-	.titleRow {
-		height: 75px; 
-		min-height: 75px;
-	}
-	.buttonStyle {
-		font-size: 55px; 
-		line-height: 75px; 
-		padding-right: 25px;
-	}
+
 }
