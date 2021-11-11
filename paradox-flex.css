@@ -1,0 +1,230 @@
+@charset "utf-8";
+/* BEGIN PARADOX GRID SETUP */
+
+@import 'includes/paradox-typography.css';
+@import 'includes/paradox-utilities.css';
+@import 'includes/paradox-xs-flex.css';
+@import 'includes/paradox-sm-flex.css';
+@import 'includes/paradox-md-flex.css';
+@import 'includes/paradox-lg-flex.css';
+@import 'includes/paradox-xl-flex.css';
+@import 'includes/paradox-xxl-flex.css';
+
+:root {
+    --col-1: 4.1666666667%;
+    --col-2: 8.3333333333%;
+    --col-3: 12.5%;
+    --col-4: 16.6666666667%;
+    --col-5: 20.8333333333%;
+    --col-6: 25%;
+    --col-7: 29.1666666667%;
+    --col-8: 33.3333333333%;
+    --col-9: 37.5%;
+    --col-10: 41.6666666667%;
+    --col-11: 45.8333333333%;
+    --col-12: 50%;
+    --col-13: 54.1666666667%;
+    --col-14: 58.3333333333%;
+    --col-15: 62.5%;
+    --col-16: 66.6666666667%;
+    --col-17: 70.8333333333%;
+    --col-18: 75%;
+    --col-19: 79.1666666667%;
+    --col-20: 83.3333333333%;
+    --col-21: 87.5%;
+    --col-22: 91.6666666667%;
+    --col-23: 95.8333333333%;
+    --col-24: 100%;
+}
+
+html {
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+	margin: 0px;
+	padding: 0px;
+}
+body {
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+}
+
+/* BASE GRID ROW/COLUMN STRUCTURE */
+
+.rw {
+	box-sizing: border-box;
+	display: -ms-flexbox;
+	display: -webkit-box;
+	display: flex;
+	-ms-flex: 0 1 auto;
+	-webkit-box-flex: 0;
+	flex: 0 1 auto;
+	-ms-flex-direction: row;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	flex-direction: row;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin-right: 0px;
+	margin-left: 0px;
+	margin-top: 0px;
+	
+}
+
+.rw.reverse {
+  -ms-flex-direction: row-reverse;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  flex-direction: row-reverse;
+}
+
+.cl.reverse {
+  -ms-flex-direction: column-reverse;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+  flex-direction: column-reverse;
+}
+
+
+
+/*.rw {
+	display: flex;
+	flex-direction: row;
+}
+
+.cl {
+	flex: 1;
+}
+
+.cl-1 {
+	width: var(--col-1);
+}
+.cl-2 {
+	width: var(--col-2);
+}
+.cl-3 {
+	width: var(--col-3);
+}
+.cl-20 {
+	width: var(--col-20);
+}
+.cl-24 {
+	width: var(--col-24);
+}*/
+.appTitle {
+	font-family: Acherus,sans-serif; 
+	font-size: 30px; 
+	font-weight: 900; 
+	line-height: 45px;
+	min-height: 45px;
+}
+.titleRow {
+	background-color: var(--vt-black); 
+	color: var(--vt-white); 
+	height: 45px; 
+	min-height: 45px;
+}
+.buttonStyle {
+	font-size: 30px; 
+	line-height: 45px; 
+	padding-right: 15px;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 200px) and (max-device-width : 575px){
+/* Styles */
+	.appTitle {
+		line-height: 90px;
+		font-size: 60px;
+	}
+	.titleRow {
+		height: 90px; 
+		min-height: 90px;
+	}
+	.buttonStyle {
+		font-size: 60px; 
+		line-height: 90px; 
+		padding-right: 15px;
+	}
+
+}
+
+@media only screen and (min-device-width : 576px) and (max-device-width : 767px) {
+		.appTitle {
+		line-height: 90px;
+		font-size: 60px;
+	}
+	.titleRow {
+		height: 90px; 
+		min-height: 90px;
+	}
+	.buttonStyle {
+		font-size: 60px; 
+		line-height: 90px; 
+		padding-right: 15px;
+	}
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 991px) {
+		.appTitle {
+		line-height: 55px;
+		font-size: 40px;
+	}
+	.titleRow {
+		height: 55px; 
+		min-height: 55px;
+	}
+	.buttonStyle {
+		font-size: 40px; 
+		line-height: 55px; 
+		padding-right: 15px;
+	}
+}
+
+@media only screen and (min-device-width : 992px) and (max-device-width : 1199px) {
+		.appTitle {
+		line-height: 45px;
+		font-size: 30px;
+	}
+	.titleRow {
+		height: 45px; 
+		min-height: 45px;
+	}
+	.buttonStyle {
+		font-size: 30px; 
+		line-height: 45px; 
+		padding-right: 15px;
+	}
+}
+
+@media only screen and (min-device-width : 1200px) and (max-device-width : 1399px) {
+	.appTitle {
+		line-height: 45px;
+		font-size: 30px;
+	}
+	.titleRow {
+		height: 45px; 
+		min-height: 45px;
+	}
+	.buttonStyle {
+		font-size: 30px; 
+		line-height: 45px; 
+		padding-right: 15px;
+	}
+}
+
+@media only screen and (min-device-width : 1400px) {
+		.appTitle {
+		line-height: 75px;
+		font-size: 55px;
+	}
+	.titleRow {
+		height: 75px; 
+		min-height: 75px;
+	}
+	.buttonStyle {
+		font-size: 55px; 
+		line-height: 75px; 
+		padding-right: 25px;
+	}
+}
