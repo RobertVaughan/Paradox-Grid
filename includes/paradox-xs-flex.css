@@ -1,5 +1,6 @@
 @media only screen and (min-device-width : 200px) and (max-device-width : 575px){
 	.xs,
+	.xs-0,
 	.xs-1,
 	.xs-2,
 	.xs-3,
@@ -28,8 +29,6 @@
 	  -ms-flex: 0 0 auto;
 	  -webkit-box-flex: 0;
 	  flex: 0 0 auto;
-	  padding-right: 1rem;
-	  padding-left: 1rem;
 	}
 
 	.xs {
@@ -40,6 +39,12 @@
 	  -ms-flex-preferred-size: 0;
 	  flex-basis: 0;
 	  max-width: var(--col-24);
+	}
+	
+	.xs-0 {
+	  -ms-flex-preferred-size: var(--col-0);
+	  flex-basis:  var(--col-0);
+	  max-width:  var(--col-0);
 	}
 
 	.xs-1 {

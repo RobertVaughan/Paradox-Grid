@@ -1,4 +1,3 @@
-
 // ========== BEGIN SIDE NAVIGATION ========== //
 function showNav() {
 //    document.getElementById("sidebar").style.left = "0px";

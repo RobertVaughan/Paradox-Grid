@@ -1,5 +1,6 @@
 @media only screen and (min-device-width : 1200px) and (max-device-width : 1399px) {
 	.xl,
+	.xl-0,
 	.xl-1,
 	.xl-2,
 	.xl-3,
@@ -28,8 +29,6 @@
 	  -ms-flex: 0 0 auto;
 	  -webkit-box-flex: 0;
 	  flex: 0 0 auto;
-	  padding-right: 1rem;
-	  padding-left: 1rem;
 	}
 
 	.xl {
@@ -42,6 +41,12 @@
 	  max-width: var(--col-24);
 	}
 
+	.xl-0 {
+	  -ms-flex-preferred-size: var(--col-0);
+	  flex-basis:  var(--col-0);
+	  max-width:  var(--col-0);
+	}
+	
 	.xl-1 {
 	  -ms-flex-preferred-size: var(--col-1);
 	  flex-basis:  var(--col-1);

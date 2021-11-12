@@ -1,5 +1,6 @@
 @media only screen and (min-device-width : 768px) and (max-device-width : 991px) {
 	.md,
+	.md-0,
 	.md-1,
 	.md-2,
 	.md-3,
@@ -28,10 +29,8 @@
 	  -ms-flex: 0 0 auto;
 	  -webkit-box-flex: 0;
 	  flex: 0 0 auto;
-	  padding-right: 1rem;
-	  padding-left: 1rem;
 	}
-
+	
 	.md {
 	  -webkit-flex-grow: 1;
 	  -ms-flex-positive: 1;
@@ -42,6 +41,12 @@
 	  max-width: var(--col-24);
 	}
 
+	.md-0 {
+	  -ms-flex-preferred-size: var(--col-0);
+	  flex-basis:  var(--col-0);
+	  max-width:  var(--col-0);
+	}
+	
 	.md-1 {
 	  -ms-flex-preferred-size: var(--col-1);
 	  flex-basis:  var(--col-1);
