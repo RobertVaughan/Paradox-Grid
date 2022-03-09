@@ -52,6 +52,13 @@ body {
 
 /* BASE GRID ROW/COLUMN STRUCTURE */
 
+.main-container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
 .rw {
 	box-sizing: border-box;
 	display: -ms-flexbox;
@@ -79,9 +86,14 @@ body {
   flex-direction: row-reverse;
 }
 
+.cl.reverse {
+  -ms-flex-direction: column-reverse;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+  flex-direction: column-reverse;
+}
 
-
-@media only screen and (min-device-width : 200px) and (max-device-width : 575px){
+/* @media only screen and (min-device-width : 200px) and (max-device-width : 575px){
 
 }
 
@@ -103,4 +115,4 @@ body {
 
 @media only screen and (min-device-width : 1400px) {
 
-}
+} */
