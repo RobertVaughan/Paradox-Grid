@@ -11,7 +11,7 @@
 @import 'includes/paradox-xxl-flex.css';
 
 :root {
-	--col-0: 0%;
+  --col-0: 0%;
   --col-1: 4.1666666667%;
   --col-2: 8.3333333333%;
   --col-3: 12.5%;
@@ -53,10 +53,10 @@ body {
 /* BASE GRID ROW/COLUMN STRUCTURE */
 
 .main-container {
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: 0px;
-  padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 0px;
+    padding-left: 0px;
 }
 
 .rw {
@@ -76,7 +76,6 @@ body {
 	margin-right: 0px;
 	margin-left: 0px;
 	margin-top: 0px;
-	
 }
 
 .rw.reverse {
