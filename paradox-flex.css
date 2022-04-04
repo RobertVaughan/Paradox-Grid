@@ -1,14 +1,14 @@
 @charset "utf-8";
 /* BEGIN PARADOX GRID SETUP */
 
-@import 'includes/paradox-typography.css';
-@import 'includes/paradox-utilities.css';
-@import 'includes/paradox-xs-flex.css';
-@import 'includes/paradox-sm-flex.css';
-@import 'includes/paradox-md-flex.css';
-@import 'includes/paradox-lg-flex.css';
-@import 'includes/paradox-xl-flex.css';
-@import 'includes/paradox-xxl-flex.css';
+@import 'includes/1 - paradox-typography.css';
+@import 'includes/1 - paradox-utilities.css';
+@import 'includes/2 - paradox-xs-flex.css';
+@import 'includes/3 - paradox-sm-flex.css';
+@import 'includes/4 - paradox-md-flex.css';
+@import 'includes/5 - paradox-lg-flex.css';
+@import 'includes/6 - paradox-xl-flex.css';
+@import 'includes/7 - paradox-xxl-flex.css';
 
 :root {
   --col-0: 0%;
