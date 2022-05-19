@@ -1,6 +1,7 @@
 @charset "utf-8";
 /* BEGIN PARADOX GRID SETUP */
 
+@import 'includes/0 - normalize.css';
 @import 'includes/1 - paradox-typography.css';
 @import 'includes/1 - paradox-utilities.css';
 @import 'includes/2 - paradox-xs-flex.css';
