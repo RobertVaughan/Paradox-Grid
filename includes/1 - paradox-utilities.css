@@ -178,3 +178,18 @@
 .pl20 {
 	padding-left: 20px !important;
 }
+.spacer-5 {
+    min-height: 5px;
+}
+.spacer-10 {
+    min-height: 10px;
+}
+.spacer-15 {
+    min-height: 15px;
+}
+.spacer-20 {
+    min-height: 20px;
+}
+.spacer-25 {
+    min-height: 25px;
+}
