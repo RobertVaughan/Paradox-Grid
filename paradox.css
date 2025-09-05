@@ -1,330 +1,310 @@
 @charset "utf-8";
 /* BEGIN PARADOX GRID SETUP */
 
-@import 'includes/normalize.css';
-@import 'includes/paradox-tiny.css';
-@import 'includes/paradox-small.css';
-@import 'includes/paradox-medium.css';
-@import 'includes/paradox-large.css';
-@import 'includes/paradox-xlarge.css';
-@import 'includes/paradox-xxlarge.css';
-@import 'includes/paradox-colors.css';
-@import 'includes/paradox-typography.css';
-@import 'includes/paradox-utilities.css';
-@import 'includes/paradox-elements.css';
-@import 'includes/paradox-sidenav.css';
-@import 'includes/waves.css';
-
-/*========== ROOT DEFINITIONS ==========*/
+@import 'includes/0 - normalize.css';
+@import 'includes/1 - paradox-typography.css';
+@import 'includes/1 - paradox-utilities.css';
+@import 'includes/2 - paradox-xs-flex.css';
+@import 'includes/3 - paradox-sm-flex.css';
+@import 'includes/4 - paradox-md-flex.css';
+@import 'includes/5 - paradox-lg-flex.css';
+@import 'includes/6 - paradox-xl-flex.css';
+@import 'includes/7 - paradox-xxl-flex.css';
 
 :root {
-    --col-1: 4.1666666667%;
-    --col-2: 8.3333333333%;
-    --col-3: 12.5%;
-    --col-4: 16.6666666667%;
-    --col-5: 20.8333333333%;
-    --col-6: 25%;
-    --col-7: 29.1666666667%;
-    --col-8: 33.3333333333%;
-    --col-9: 37.5%;
-    --col-10: 41.6666666667%;
-    --col-11: 45.8333333333%;
-    --col-12: 50%;
-    --col-13: 54.1666666667%;
-    --col-14: 58.3333333333%;
-    --col-15: 62.5%;
-    --col-16: 66.6666666667%;
-    --col-17: 70.8333333333%;
-    --col-18: 75%;
-    --col-19: 79.1666666667%;
-    --col-20: 83.3333333333%;
-    --col-21: 87.5%;
-    --col-22: 91.6666666667%;
-    --col-23: 95.8333333333%;
-    --col-24: 100%;
+  --col-0: 0%;
+  --col-1: 4.1666666667%;
+  --col-2: 8.3333333333%;
+  --col-3: 12.5%;
+  --col-4: 16.6666666667%;
+  --col-5: 20.8333333333%;
+  --col-6: 25%;
+  --col-7: 29.1666666667%;
+  --col-8: 33.3333333333%;
+  --col-9: 37.5%;
+  --col-10: 41.6666666667%;
+  --col-11: 45.8333333333%;
+  --col-12: 50%;
+  --col-13: 54.1666666667%;
+  --col-14: 58.3333333333%;
+  --col-15: 62.5%;
+  --col-16: 66.6666666667%;
+  --col-17: 70.8333333333%;
+  --col-18: 75%;
+  --col-19: 79.1666666667%;
+  --col-20: 83.3333333333%;
+  --col-21: 87.5%;
+  --col-22: 91.6666666667%;
+  --col-23: 95.8333333333%;
+  --col-24: 100%;
 }
+
 html {
-  box-sizing: border-box;
 }
 *, *:before, *:after {
-  box-sizing: inherit;
+	box-sizing: inherit;
+	margin: 0px;
+	padding: 0px;
 }
 body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 14px;
 }
-ul:not(.browser-default) {
-  padding-left: 0;
-  list-style-type: none;
-}
-
-ul:not(.browser-default) > li {
-  list-style-type: none;
-}
-
 
 /* BASE GRID ROW/COLUMN STRUCTURE */
-#main-container {
-	padding: 0px;
-	margin: 0px auto;
-	z-index: 50;
+
+.main-container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 0px;
+    padding-left: 0px;
 }
 
 .rw {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0px;
-}
-.rw:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-.cl {
-    float: left;
-    -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-    padding: 0px;
-    min-height: 1px;
-	margin: 0px;
-}
-
-/* SIDENAV SETTINGS */
-#main-body {
-	float: left;
-	position: relative;
-	width: 100%;
-	height: 100%;
-    padding-left: 37px;
-    padding-right: 0px;
-}
-#sidenav {
-	transition: left .3s;
-	float: left;
-	position: fixed;
-	width: 265px;
-	left: 0px;
-	margin: 0px;
-	-webkit-transform: translateX(-100%);
-		  transform: translateX(-100%);
-	height: 100%;
-	height: calc(100% + 60px);
-	height: -moz-calc(100%);
-	padding-bottom: 60px;
-	z-index: 998;
-	overflow-y: auto;
-	will-change: transform;
-	-webkit-backface-visibility: hidden;
-		  backface-visibility: hidden;
-
-}
-#sidenav >ul li:hover {
-	background-color: #efeff2;
-}
-#sidenav >ul li {
-	cursor: pointer;
-}
-#sidenav-toggle {
-	font-size: 30px;
-	line-height: 30px;
-	cursor: pointer;
-}
-.side-icons {
-	font-size: 15px;
-	line-height: 15px;
-	cursor: pointer;
-}
-#sidenav-small {
-	transition: left .3s;
-	float: left;
-	position: fixed;
-	left: 35px;
-	width: 35px !important;
-	-webkit-transform: translateX(-100%);
-		  transform: translateX(-100%);
-	height: 100%;
-	height: calc(100% + 60px);
-	height: -moz-calc(100%);
-	padding-bottom: 60px;
-	z-index: 999;
-	-webkit-box-shadow: 2px 0px 2px 0px rgba(0,0,0,.1);
-	-moz-box-shadow: 2px 0px 2px 0px rgba(0,0,0,.1);
-	box-shadow: 2px 0px 2px 0px rgba(0,0,0,.1);
-}
-.sidenav-overlay {
-	z-index: 900;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0,0,0,.3);
-}
-.card-container {
-	border: 1px solid #ccc; 
-	border-radius: 3px;
-	-webkit-box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
-	-moz-box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
-	box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
-}
-.card-header {
-	min-height: 25px;
-	border-radius: 3px 3px 0 0;
-	border-bottom: 1px solid #ddd;
-	line-height: 25px;
-	text-align: center;
-	font-size: 1.15rem;
-	font-weight: 700;
-	text-transform: uppercase;
-	padding: 5px !important;
-	background: rgba(0,0,0,0.03);
-	
-}
-.card-body {
-	min-height: 30px;
-	border-radius: 0;
-	padding: 5px !important;
-}
-.card-footer {
-	min-height: 10px;
-	border-radius: 0 0 3px 3px;
-	border-top: 1px solid #ddd;
-	line-height: 10px;
-	text-align: center;
+	box-sizing: border-box;
+	display: -ms-flexbox;
+	display: -webkit-box;
+	display: flex;
+	-ms-flex: 0 1 auto;
+	-webkit-box-flex: 0;
+	flex: 0 1 auto;
+	-ms-flex-direction: row;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	flex-direction: row;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin-right: 0px;
+	margin-left: 0px;
+	margin-top: 0px;
 }
 
-
-/* DEFAULT ALL SCREEN GRID */
-
-@media only screen and (min-width: 200px) {
-  	.hide-tiny {
-    	display: none !important;
-  	}
-	.hide-tiny-up {
-    	display: none !important;
-  	}
-	.hide-small-down, .hide-medium-down, .hide-large-down, .hide-xlarge-down, .hide-xxlarge-down {
-		display: none !important;
-	}
+.rw.reverse {
+  -ms-flex-direction: row-reverse;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  flex-direction: row-reverse;
 }
 
-@media only screen and (min-width: 400px) {
-  	.hide-small {
-    	display: none !important;
-  	}
-	.hide-tiny-up, .hide-small-up {
-		display: none !important;
-	}
-	.hide-small-down, .hide-medium-down, .hide-large-down, .hide-xlarge-down, .hide-xxlarge-down {
-		display: none !important;
-	}
-}
-@media only screen and (min-width: 600px) {
-
-	.show-medium-up {
-    	display: block !important;
-  	}
-	.hide-medium {
-    	display: none !important;
-  	}
-	.hide-tiny-up, .hide-small-up, .hide-medium-up {
-		display: none !important;
-	}
-	.hide-large-down {
-		display: none !important;
-	}
-}
-@media only screen and (min-width: 992px) {
-	.show-large {
-		display: block !important;
-	}
-  	.hide-large {
-    	display: none !important;
-  	}
-	.hide-tiny-up, .hide-small-up, .hide-medium-up, .hide-large-up {
-		display: none !important;
-	}
-	.hide-large-down {
-		display: none !important;
-	}
-}
-@media only screen and (min-width: 1200px) {
-  	.hide-xlarge {
-    	display: none !important;
-  	}
-	.hide-tiny-up, .hide-small-up, .hide-medium-up, .hide-large-up, .hide-xlarge-up {
-		display: none !important;
-	}
-}
-@media only screen and (min-width: 1600px) {
-  	.hide-xxlarge {
-    	display: none !important;
-  	}
-	.hide-tiny-up, .hide-small-up, .hide-medium-up, .hide-large-up, .hide-xlarge-up {
-		display: none !important;
-	}
-}
-@media only screen and (max-width: 399px) {
-	.show-small {
-		display: block !important;
-  	}
-	.center-small {
-		text-align: center;
-  	}
-}
-@media only screen and (max-width: 599px) {
-	.show-small, .show-medium {
-		display: block !important;
-  	}
-	.center-small {
-		text-align: center;
-  	}
-}
-@media only screen and (max-width: 991px) {
-	.show-medium-down {
-    	display: block !important;
-  	}
-  	.hide-medium-down {
-    	display: none !important;
-  	}
-}
-@media only screen and (max-width: 1199px) {
-  .hide-large-down {
-    display: none !important;
-  }
-}
-@media only screen and (max-width: 1599px) {
-  .hide-xlarge-down {
-    display: none !important;
-  }
+.cl.reverse {
+  -ms-flex-direction: column-reverse;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+  flex-direction: column-reverse;
 }
 
-
-/* T Extra small devices (portrait phones, less than 576px) */
-@media (max-width: 400px) {
-    
+.a,
+.a-0,
+.a-1,
+.a-2,
+.a-3,
+.a-4,
+.a-5,
+.a-6,
+.a-7,
+.a-8,
+.a-9,
+.a-10,
+.a-11,
+.a-12.
+.a-13,
+.a-14,
+.a-15,
+.a-16,
+.a-17,
+.a-18,
+.a-19,
+.a-20,
+.a-21,
+.a-22,
+.a-23,
+.a-24{
+  box-sizing: border-box;
+  -ms-flex: 0 0 auto;
+  -webkit-box-flex: 0;
+  flex: 0 0 auto;
 }
 
-/* S Small devices (landscape phones, 576px and up) */
-@media (min-width: 401px) {
-    
+.xs {
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  max-width: var(--col-24);
 }
 
-/* M Medium devices (tablets, 768px and up) */
-@media (min-width: 601px) {
+.a-0 {
+  -ms-flex-preferred-size: var(--col-0);
+  flex-basis:  var(--col-0);
+  max-width:  var(--col-0);
+}
+
+.a-1 {
+  -ms-flex-preferred-size: var(--col-1);
+  flex-basis:  var(--col-1);
+  max-width:  var(--col-1);
+}
+
+.a-2 {
+  -ms-flex-preferred-size: var(--col-2);
+  flex-basis: var(--col-2);
+  max-width: var(--col-2);
+}
+
+.a-3 {
+  -ms-flex-preferred-size: var(--col-3);
+  flex-basis: var(--col-3);
+  max-width: var(--col-3);
+}
+
+.a-4 {
+  -ms-flex-preferred-size: var(--col-4);
+  flex-basis: var(--col-4);
+  max-width: var(--col-4);
+}
+
+.a-5 {
+  -ms-flex-preferred-size: var(--col-5);
+  flex-basis: var(--col-5);
+  max-width: var(--col-5);
+}
+
+.a-6 {
+  -ms-flex-preferred-size: var(--col-6);
+  flex-basis: var(--col-6);
+  max-width: var(--col-6);
+}
+
+.a-7 {
+  -ms-flex-preferred-size: var(--col-7);
+  flex-basis: var(--col-7);
+  max-width: var(--col-7);
+}
+
+.a-8 {
+  -ms-flex-preferred-size: var(--col-8);
+  flex-basis: var(--col-8);
+  max-width: var(--col-8);
+}
+
+.a-9 {
+  -ms-flex-preferred-size: var(--col-9);
+  flex-basis: var(--col-9);
+  max-width: var(--col-9);
+}
+
+.a-10 {
+  -ms-flex-preferred-size: var(--col-10);
+  flex-basis: var(--col-10);
+  max-width: var(--col-10);
+}
+
+.a-11 {
+  -ms-flex-preferred-size: var(--col-11);
+  flex-basis: var(--col-11);
+  max-width: var(--col-11);
+}
+
+.a-12 {
+  -ms-flex-preferred-size: var(--col-12);
+  flex-basis: var(--col-12);
+  max-width: var(--col-12);
+}
+
+.a-13 {
+  -ms-flex-preferred-size: var(--col-13);
+  flex-basis: var(--col-13);
+  max-width: var(--col-13);
+}
+
+.a-14 {
+  -ms-flex-preferred-size: var(--col-14);
+  flex-basis: var(--col-14);
+  max-width: var(--col-14);
+}
+
+.a-15 {
+  -ms-flex-preferred-size: var(--col-15);
+  flex-basis: var(--col-15);
+  max-width: var(--col-15);
+}
+
+.a-16 {
+  -ms-flex-preferred-size: var(--col-16);
+  flex-basis: var(--col-16);
+  max-width: var(--col-16);
+}
+
+.a-17 {
+  -ms-flex-preferred-size: var(--col-17);
+  flex-basis: var(--col-17);
+  max-width: var(--col-17);
+}
+
+.a-18 {
+  -ms-flex-preferred-size: var(--col-18);
+  flex-basis: var(--col-18);
+  max-width: var(--col-18);
+}
+
+.a-19 {
+  -ms-flex-preferred-size: var(--col-19);
+  flex-basis: var(--col-19);
+  max-width: var(--col-19);
+}
+
+.a-20 {
+  -ms-flex-preferred-size: var(--col-20);
+  flex-basis: var(--col-20);
+  max-width: var(--col-20);
+}
+
+.a-21 {
+  -ms-flex-preferred-size: var(--col-21);
+  flex-basis: var(--col-21);
+  max-width: var(--col-21);
+}
+
+.a-22 {
+  -ms-flex-preferred-size: var(--col-22);
+  flex-basis: var(--col-22);
+  max-width: var(--col-22);
+}
+
+.a-23 {
+  -ms-flex-preferred-size: var(--col-23);
+  flex-basis: var(--col-23);
+  max-width: var(--col-23);
+}
+
+.a-24 {
+  -ms-flex-preferred-size: var(--col-24);
+  flex-basis: var(--col-24);
+  max-width: var(--col-24);
+}
+
+/* @media only screen and (min-device-width : 200px) and (max-device-width : 575px){
 
 }
 
-/* L Large devices (desktops, 992px and up) */
-@media (min-width: 993px) {
-    
-}
-
-/* XL Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1201px) {
-    
-}
-
-/* XXL Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1601px) {
+@media only screen and (min-device-width : 576px) and (max-device-width : 767px) {
 
 }
 
-/* END PARADOX GRID SETUP */
+@media only screen and (min-device-width : 768px) and (max-device-width : 991px) {
+
+}
+
+@media only screen and (min-device-width : 992px) and (max-device-width : 1199px) {
+
+}
+
+@media only screen and (min-device-width : 1200px) and (max-device-width : 1399px) {
+
+}
+
+@media only screen and (min-device-width : 1400px) {
+
+} */
