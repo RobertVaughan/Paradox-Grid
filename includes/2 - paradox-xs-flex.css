@@ -12,7 +12,7 @@
 	.xs-9,
 	.xs-10,
 	.xs-11,
-	.xs-12.
+	.xs-12,
 	.xs-13,
 	.xs-14,
 	.xs-15,
@@ -24,13 +24,12 @@
 	.xs-21,
 	.xs-22,
 	.xs-23,
-	.xs-24{
+	.xs-24 {
 	  box-sizing: border-box;
 	  -ms-flex: 0 0 auto;
 	  -webkit-box-flex: 0;
 	  flex: 0 0 auto;
 	}
-
 	.xs {
 	  -webkit-flex-grow: 1;
 	  -ms-flex-positive: 1;
@@ -40,7 +39,6 @@
 	  flex-basis: 0;
 	  max-width: var(--col-24);
 	}
-	
 	.xs-0 {
 	  -ms-flex-preferred-size: var(--col-0);
 	  flex-basis:  var(--col-0);
