@@ -1,38 +1,436 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Paradox-Grid Example Page</title>
-        <link href="paradox-flex.css" rel="stylesheet" type="text/css">
-        <script src="paradox.js"></script>
-    </head>
-    <style type="text/css">
-        body {
-            background: #5575b7;
-        }
-        h1, h2, h3, h4, h5, h6, h7, h8 {
-            color: #fff;
-            font-family: 'Roboto', sans-serif;
-        }
-        h1 {
-            font-weight: 700;
-            font-size: 2.5em;
-        }
-        p {
-            color: #fff;
-            font-family: 'Roboto', sans-serif;
-            font-size: 14px;
-        }
-    </style>
-<body>
-<div id="main-container">
-    <div class="rw">
-        <div class="xs-4 s-4 m-4 l-4 xl-4 xxl-4">&nbsp;</div>
-        <div class="xs-20 s-20 m-20 l-20 xl-20 xxl-20 center">
-            <h1>This is a Heading</h1>
-            <p>This is a paragraph.</p>
-        </div>
-    </div>
-</div>
+<!doctype html>
+<html class="theme-auto theme-hue-blue">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
+  <title>Paradox-Grid Documentation</title>
+
+  <!-- Paradox-Grid core & includes (order matters) -->
+  <link rel="stylesheet" href="paradox.css">
+  <link rel="stylesheet" href="includes/0 - normalize.css">
+  <link rel="stylesheet" href="includes/0 - bootstrap-helpers.css">
+  <link rel="stylesheet" href="includes/1 - paradox-utilities.css">
+  <link rel="stylesheet" href="includes/1 - paradox-colors.css">
+  <link rel="stylesheet" href="includes/1 - paradox-typography.css">
+  <link rel="stylesheet" href="includes/1 - paradox-elements.css">
+  <link rel="stylesheet" href="includes/1 - paradox-forms.css">
+  <link rel="stylesheet" href="includes/1 - paradox-borders.css">
+  <link rel="stylesheet" href="includes/1 - paradox-sizing.css">
+  <link rel="stylesheet" href="includes/1 - paradox-spacing.css">
+  <link rel="stylesheet" href="includes/1 - paradox-themes.css">
+
+  <!-- Tiny docs shell CSS -->
+  <link rel="stylesheet" href="includes/1 - paradox-docs.css">
+
+  <!-- Optional helpers for theme toggle, copy, filtering -->
+  <script src="paradox.js" defer></script>
+</head>
+
+<body class="use-themed-surfaces">
+
+  <!-- Top navigation using Paradox-Grid -->
+  <header class="nav-bar docs-topbar">
+    <div class="nav-brand">
+      <span class="brandmark">Paradox-Grid</span> <span class="muted">Docs</span>
+    </div>
+    <nav class="nav-menu">
+      <a class="nav-link" href="#intro">Intro</a>
+      <a class="nav-link" href="#grid">Grid</a>
+      <a class="nav-link" href="#utilities">Utilities</a>
+      <a class="nav-link" href="#elements">Elements</a>
+      <a class="nav-link" href="#forms">Forms</a>
+      <a class="nav-link" href="#themes">Themes</a>
+      <a class="nav-link" href="#playground">Play</a>
+    </nav>
+    <div class="nav-actions">
+      <label class="search-in hide sm-d-inblk" for="docs-search">
+        <span>🔎</span>
+        <input id="docs-search" type="search" placeholder="Filter docs…">
+      </label>
+      <button class="btn btn-ghost tip tip-btm" data-tip="Toggle theme" data-pg-theme-toggle>🌓</button>
+      <a class="btn btn-outline" href="README.md" target="_blank" rel="noopener">README</a>
+      <a class="btn btn-outline" href="https://github.com/yourusername/paradox-grid" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </header>
+
+  <!-- Page body -->
+  <main class="wrap wrap-gut-2 docs-main">
+    <div class="row">
+
+      <!-- Sidebar (Paradox side nav) -->
+      <aside class="a a-6 md-5 lg-4 xl-4">
+        <div class="card-container side-card">
+          <div class="card-header">Contents</div>
+          <div class="card-body">
+            <nav class="side-nav docs-sidenav">
+              <a class="nav-link" href="#intro">Introduction</a>
+              <a class="nav-link" href="#grid">Grid</a>
+              <a class="nav-link" href="#utilities">Utilities</a>
+              <a class="nav-link" href="#elements">Elements</a>
+              <a class="nav-link" href="#forms">Forms</a>
+              <a class="nav-link" href="#themes">Themes</a>
+              <a class="nav-link" href="#playground">Playground</a>
+            </nav>
+          </div>
+          <div class="card-footer">
+            <small class="muted">Version: dev • Built with Paradox-Grid</small>
+          </div>
+        </div>
+
+        <div class="card-container mgt15">
+          <div class="card-header">Tips</div>
+          <div class="card-body">
+            <ul class="mgl20">
+              <li>Use the <span class="b">Play</span> tab to test markup live.</li>
+              <li>Click <span class="b">Copy</span> to grab example code.</li>
+              <li>The page layout uses the grid you’re reading about.</li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main content -->
+      <section class="a a-18 md-19 lg-20 xl-20">
+        <div id="mount"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="wrap wrap-gut-2 mgb20">
+    <div class="row">
+      <div class="a a-24">
+        <div class="card-container">
+          <div class="card-body">
+            <div class="row">
+              <div class="a a-12 md-8">
+                <div class="b">Paradox-Grid</div>
+                <div class="muted">Lightweight, responsive, modern CSS framework.</div>
+              </div>
+              <div class="a a-12 md-8">
+                <a class="nav-link" href="https://github.com/yourusername/paradox-grid" target="_blank" rel="noopener">GitHub</a>
+              </div>
+              <div class="a a-24 md-8 mgt10 md-mgt0 txt-end md-txt-end">
+                <small class="muted">© Antagonist Games</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Docs behavior: hash routing, building example cards, code copy -->
+  <script>
+    const mount = document.getElementById('mount');
+    const sideLinks = Array.from(document.querySelectorAll('.docs-sidenav .nav-link, .nav-menu .nav-link'));
+
+    function setActive(hash){
+      sideLinks.forEach(a => {
+        if (a.getAttribute('href') === hash) a.classList.add('is-active');
+        else a.classList.remove('is-active');
+      });
+    }
+
+    function copyMarkup(btn, codeEl){
+      navigator.clipboard.writeText(codeEl.textContent).then(()=>{
+        const old = btn.textContent; btn.textContent = 'Copied!'; setTimeout(()=> btn.textContent = 'Copy', 1200);
+      });
+    }
+
+    function exCard(title, markup){
+      const wrap = document.createElement('div');
+      wrap.className = 'card-container ex-card mgt15';
+      wrap.innerHTML = '<div class="card-header">'+title+'</div>';
+      const body = document.createElement('div');
+      body.className = 'card-body';
+
+      const iframe = document.createElement('iframe');
+      iframe.className = 'ex-preview';
+      iframe.setAttribute('title', title + ' preview');
+      iframe.srcdoc = `
+<!doctype html>
+<html class="theme-auto theme-hue-blue">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="paradox-flex.css">
+<link rel="stylesheet" href="includes/0 - normalize.css">
+<link rel="stylesheet" href="includes/0 - bootstrap-helpers.css">
+<link rel="stylesheet" href="includes/1 - paradox-utilities.css">
+<link rel="stylesheet" href="includes/1 - paradox-colors.css">
+<link rel="stylesheet" href="includes/1 - paradox-typography.css">
+<link rel="stylesheet" href="includes/1 - paradox-elements.css">
+<link rel="stylesheet" href="includes/1 - paradox-forms.css">
+<link rel="stylesheet" href="includes/1 - paradox-borders.css">
+<link rel="stylesheet" href="includes/1 - paradox-sizing.css">
+<link rel="stylesheet" href="includes/1 - paradox-spacing.css">
+<link rel="stylesheet" href="includes/1 - paradox-themes.css">
+</head>
+<body class="use-themed-surfaces">` + markup + `</body></html>`;
+      body.appendChild(iframe);
+
+      const pre = document.createElement('pre');
+      pre.className = 'code mgt10';
+      const copy = document.createElement('button');
+      copy.className = 'copy-btn';
+      copy.textContent = 'Copy';
+      const code = document.createElement('code');
+      code.textContent = markup.trim();
+      copy.addEventListener('click', () => copyMarkup(copy, code));
+      pre.appendChild(copy); pre.appendChild(code);
+
+      body.appendChild(pre);
+      wrap.appendChild(body);
+      return wrap;
+    }
+
+    // Sections
+    function secIntro(){
+      const s = document.createElement('section');
+      s.innerHTML = `
+        <div class="card-container">
+          <div class="card-header">Welcome</div>
+          <div class="card-body">
+            <p class="md-grey">Paradox-Grid is a lightweight, responsive CSS framework. This docs site is built with the same grid, utilities, and elements it documents.</p>
+            <div class="mgt10">
+              <a class="btn btn-pr" href="#grid">Start with the Grid</a>
+              <a class="btn btn-outline mgl10" href="README.md" target="_blank">Open README</a>
+            </div>
+          </div>
+        </div>
+      `;
+      return s;
+    }
+
+    function secGrid(){
+      const s = document.createElement('section');
+      s.appendChild(exCard('Responsive Grid', `
+  <div class="wrap wrap-gut-2">
+    <h2 class="h4-text">Responsive Grid</h2>
+    <div class="row">
+      <div class="a a-6 sm-12 md-8 lg-6 xl-4"><div class="p10 b-blue-l3">a-6 sm-12 md-8 lg-6 xl-4</div></div>
+      <div class="a a-6 sm-12 md-8 lg-6 xl-4"><div class="p10 b-blue-l2">a-6 sm-12 md-8 lg-6 xl-4</div></div>
+      <div class="a a-6 sm-12 md-8 lg-6 xl-4"><div class="p10 b-blue-l1">a-6 sm-12 md-8 lg-6 xl-4</div></div>
+      <div class="a a-6 sm-12 md-8 lg-6 xl-4"><div class="p10 b-blue">a-6 sm-12 md-8 lg-6 xl-4</div></div>
+    </div>
+  </div>`));
+      return s;
+    }
+
+    function secUtilities(){
+      const s = document.createElement('section');
+      s.appendChild(exCard('Utilities: Motion, Ratio, Clamp', `
+  <div class="wrap wrap-gut-2">
+    <div class="row">
+      <div class="a a-24 md-12">
+        <div class="mgb10"><button class="btn btn-pr fade-in">Fade In</button><button class="btn mgl10 slide-up">Slide Up</button><button class="btn mgl10 pulse">Pulse</button></div>
+        <div class="p10 b-grey-l3" style="border-radius:8px; max-width:360px;">
+          <p class="clamp-2">This is a very long piece of text that will clamp to two lines using the clamp utility. It demonstrates how overflow is handled gracefully with ellipsis in different contexts.</p>
+        </div>
+      </div>
+      <div class="a a-24 md-12">
+        <div class="ar-16x9" style="border-radius:8px; overflow:hidden;">
+          <img class="fit-cover" src="https://placehold.co/1200x675" alt="demo">
+        </div>
+      </div>
+    </div>
+  </div>`));
+      return s;
+    }
+
+    function secElements(){
+      const s = document.createElement('section');
+      s.appendChild(exCard('Buttons, Cards, Dropdowns, Tables', `
+  <div class="wrap wrap-gut-2">
+    <div class="mgb10">
+      <button class="btn btn-pr">Primary</button>
+      <button class="btn btn-sc mgl10">Secondary</button>
+      <div class="drop mgl10">
+        <button class="btn drop-btn">Menu ▾</button>
+        <div class="drop-menu">
+          <a class="drop-item" href="#">Action</a>
+          <a class="drop-item" href="#">Another</a>
+          <div class="drop-div"></div>
+          <a class="drop-item is-dis" href="#" aria-disabled="true">Disabled</a>
+        </div>
+      </div>
+    </div>
+    <div class="card-container">
+      <div class="card-header">Card Header</div>
+      <div class="card-body">Card body content...</div>
+      <div class="card-footer">Footer</div>
+    </div>
+    <div class="mgt15">
+      <div class="tbl-scroll">
+        <table class="tbl tbl-striped tbl-hover tbl-bord">
+          <thead><tr><th>Item</th><th>Qty</th></tr></thead>
+          <tbody>
+            <tr><td>Widgets</td><td class="tbl-align-end">16</td></tr>
+            <tr><td>Gadgets</td><td class="tbl-align-end">9</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>`));
+      return s;
+    }
+
+    function secForms(){
+      const s = document.createElement('section');
+      s.appendChild(exCard('Forms & Inputs', `
+  <div class="wrap wrap-gut-2">
+    <form class="form-row">
+      <div class="field">
+        <label class="label" for="em">Email <span class="req">*</span></label>
+        <input id="em" class="inpt" type="email" placeholder="you@site.com">
+        <div class="hint">We’ll never share your email.</div>
+      </div>
+      <div class="field">
+        <label class="label" for="pw">Password</label>
+        <div class="grp">
+          <span class="grp-add">🔒</span>
+          <input id="pw" class="inpt" type="password" placeholder="••••••••">
+          <button class="grp-btn btn btn-pr" type="button">Show</button>
+        </div>
+      </div>
+      <button class="btn btn-pr" type="submit">Sign in</button>
+    </form>
+    <div class="mgt15">
+      <label class="chk">
+        <input class="chk-inpt" type="checkbox" checked>
+        <span class="chk-box"></span>
+        <span class="chk-lbl">Remember me</span>
+      </label>
+      <label class="sw mgl10">
+        <input class="sw-inpt" type="checkbox">
+        <span class="sw-trk"><span class="sw-knob"></span></span>
+        <span class="sw-lbl">Notifications</span>
+      </label>
+    </div>
+  </div>`));
+      return s;
+    }
+
+    function secThemes(){
+      const s = document.createElement('section');
+      s.appendChild(exCard('Themes & Hue Swaps', `
+  <div class="wrap wrap-gut-2">
+    <p class="md-grey">This iframe uses <code>theme-auto</code> and <code>theme-hue-blue</code>. Toggle the theme (top right) to see variables update.</p>
+    <button class="btn btn-pr mgt10">Primary</button>
+    <button class="btn btn-sc mgl10">Secondary</button>
+    <button class="btn btn-err mgl10">Error</button>
+    <button class="btn btn-suc mgl10">Success</button>
+  </div>`));
+      return s;
+    }
+
+    function secPlay(){
+      const s = document.createElement('section');
+      const card = document.createElement('div');
+      card.className = 'card-container ex-card';
+      card.innerHTML = '<div class="card-header">Playground</div>';
+      const body = document.createElement('div'); body.className = 'card-body';
+
+      const controls = document.createElement('div');
+      controls.className = 'row';
+      controls.innerHTML = `
+        <div class="a a-24 md-12">
+          <div class="muted">Includes: <code>paradox-flex.css</code>, <code>utilities</code>, <code>elements</code>, <code>forms</code>, <code>themes</code></div>
+        </div>
+        <div class="a a-24 md-12 txt-end md-txt-end">
+          <button id="run" class="btn btn-pr">Run</button>
+        </div>
+      `;
+      body.appendChild(controls);
+
+      const editorRow = document.createElement('div');
+      editorRow.className = 'row mgt10';
+
+      const pre = document.createElement('pre'); pre.className = 'code a a-24';
+      const copy = document.createElement('button'); copy.className = 'copy-btn'; copy.textContent = 'Copy';
+      const code = document.createElement('code');
+      code.textContent = `<!doctype html>
+<html class="theme-auto theme-hue-blue">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="paradox-flex.css">
+  <link rel="stylesheet" href="includes/1 - paradox-utilities.css">
+  <link rel="stylesheet" href="includes/1 - paradox-elements.css">
+  <link rel="stylesheet" href="includes/1 - paradox-forms.css">
+  <link rel="stylesheet" href="includes/1 - paradox-themes.css">
+</head>
+<body class="use-themed-surfaces">
+  <div class="wrap wrap-gut-2">
+    <div class="row">
+      <div class="a a-24 md-12">
+        <div class="card-container">
+          <div class="card-header">Hello</div>
+          <div class="card-body">Edit this code, then click Run.</div>
+        </div>
+      </div>
+      <div class="a a-24 md-12 mgt10 md-mgt0">
+        <button class="btn btn-pr fade-in">Action</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>`;
+      copy.addEventListener('click', () => navigator.clipboard.writeText(code.textContent).then(()=>{copy.textContent='Copied!'; setTimeout(()=>copy.textContent='Copy',1200)}));
+      pre.appendChild(copy); pre.appendChild(code);
+
+      const prevCol = document.createElement('div');
+      prevCol.className = 'a a-24';
+      const iframe = document.createElement('iframe'); iframe.className = 'ex-preview mgt10';
+      prevCol.appendChild(iframe);
+
+      editorRow.appendChild(pre);
+      editorRow.appendChild(prevCol);
+      body.appendChild(editorRow);
+      card.appendChild(body);
+      s.appendChild(card);
+
+      document.getElementById('run').addEventListener('click', () => {
+        iframe.srcdoc = `
+<!doctype html>
+<html class="theme-auto theme-hue-blue">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="paradox-flex.css">
+<link rel="stylesheet" href="includes/1 - paradox-utilities.css">
+<link rel="stylesheet" href="includes/1 - paradox-elements.css">
+<link rel="stylesheet" href="includes/1 - paradox-forms.css">
+<link rel="stylesheet" href="includes/1 - paradox-themes.css">
+</head>
+<body class="use-themed-surfaces">` + code.textContent + `</body></html>`;
+      });
+      // auto-run
+      document.getElementById('run').click();
+
+      return s;
+    }
+
+    // Router
+    function render(){
+      const hash = location.hash || '#intro';
+      mount.innerHTML = '';
+      let section;
+      if (hash === '#intro') section = secIntro();
+      else if (hash === '#grid') section = secGrid();
+      else if (hash === '#utilities') section = secUtilities();
+      else if (hash === '#elements') section = secElements();
+      else if (hash === '#forms') section = secForms();
+      else if (hash === '#themes') section = secThemes();
+      else if (hash === '#playground') section = secPlay();
+      else section = secIntro();
+      mount.appendChild(section);
+      setActive(hash);
+      window.scrollTo(0,0);
+    }
+    window.addEventListener('hashchange', render);
+    window.addEventListener('DOMContentLoaded', render);
+  </script>
 </body>
 </html>
