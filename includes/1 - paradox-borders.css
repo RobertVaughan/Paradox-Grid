@@ -1,0 +1,165 @@
+/* =======================================================================
+   Paradox-Grid: Borders, Radius & Shadows
+   -----------------------------------------------------------------------
+   Purpose:
+     Lightweight, Bootstrap-distinct utilities to add borders, rounded
+     corners, and shadows to elements with short, memorable class names.
+   Notes:
+     - Uses logical properties for start/end (RTL-friendly).
+     - Color defaults to currentColor; can be combined with your color
+       utilities (e.g., text color or custom CSS variables).
+     - No placeholders; all classes are fully expanded.
+
+   Contents:
+     1) CSS Variables (tunable scales)
+     2) Border Utilities (all sides, per-side, style, color)
+     3) Border Radius Utilities (global & per-corner)
+     4) Shadow Utilities (outset & inset)
+   ======================================================================= */
+
+
+/* =======================================================================
+   1) CSS VARIABLES
+   -----------------------------------------------------------------------
+   Adjust these tokens to theme border thickness, radius, and shadows.
+   ======================================================================= */
+
+:root {
+  /* Border thickness scale */
+  --pg-brw-0: 0;
+  --pg-brw-1: 1px;
+  --pg-brw-2: 2px;
+  --pg-brw-3: 3px;
+
+  /* Default border color (fallbacks to currentColor) */
+  --pg-brc: currentColor;
+
+  /* Radius scale */
+  --pg-rd-0: 0;
+  --pg-rd-sm: .125rem;
+  --pg-rd-md: .25rem;
+  --pg-rd-lg: .5rem;
+  --pg-rd-xl: 1rem;
+  --pg-rd-full: 9999px;
+
+  /* Shadow presets */
+  --pg-sd-1: 0 1px 2px rgba(0,0,0,.08), 0 1px 1px rgba(0,0,0,.04);
+  --pg-sd-2: 0 4px 8px rgba(0,0,0,.10), 0 2px 4px rgba(0,0,0,.06);
+  --pg-sd-3: 0 10px 16px rgba(0,0,0,.12), 0 5px 8px rgba(0,0,0,.08);
+}
+
+
+/* =======================================================================
+   2) BORDER UTILITIES
+   -----------------------------------------------------------------------
+   - All sides: .br-0 / .br-1 / .br-2 / .br-3
+   - Per-side (logical): .br-t / .br-b / .br-s / .br-e (+ width variants)
+   - Styles: .br-sol / .br-dash / .br-dot
+   - Color helper: .brc-current and CSS variable hook .brc-var
+   ======================================================================= */
+
+/* --- Border: all sides (width) --- */
+.br-0 { border-width: var(--pg-brw-0) !important; border-style: solid !important; border-color: var(--pg-brc) !important; }
+.br-1 { border-width: var(--pg-brw-1) !important; border-style: solid !important; border-color: var(--pg-brc) !important; }
+.br-2 { border-width: var(--pg-brw-2) !important; border-style: solid !important; border-color: var(--pg-brc) !important; }
+.br-3 { border-width: var(--pg-brw-3) !important; border-style: solid !important; border-color: var(--pg-brc) !important; }
+
+/* --- Border: per-side (logical) base on/off --- */
+.br-t  { border-block-start: var(--pg-brw-1) solid var(--pg-brc) !important; }
+.br-b  { border-block-end:   var(--pg-brw-1) solid var(--pg-brc) !important; }
+.br-s  { border-inline-start:var(--pg-brw-1) solid var(--pg-brc) !important; }
+.br-e  { border-inline-end:  var(--pg-brw-1) solid var(--pg-brc) !important; }
+
+/* --- Border: per-side width variants --- */
+.br-t-0 { border-block-start-width: var(--pg-brw-0) !important; border-block-start-style: solid !important; }
+.br-t-1 { border-block-start-width: var(--pg-brw-1) !important; border-block-start-style: solid !important; }
+.br-t-2 { border-block-start-width: var(--pg-brw-2) !important; border-block-start-style: solid !important; }
+.br-t-3 { border-block-start-width: var(--pg-brw-3) !important; border-block-start-style: solid !important; }
+
+.br-b-0 { border-block-end-width: var(--pg-brw-0) !important; border-block-end-style: solid !important; }
+.br-b-1 { border-block-end-width: var(--pg-brw-1) !important; border-block-end-style: solid !important; }
+.br-b-2 { border-block-end-width: var(--pg-brw-2) !important; border-block-end-style: solid !important; }
+.br-b-3 { border-block-end-width: var(--pg-brw-3) !important; border-block-end-style: solid !important; }
+
+.br-s-0 { border-inline-start-width: var(--pg-brw-0) !important; border-inline-start-style: solid !important; }
+.br-s-1 { border-inline-start-width: var(--pg-brw-1) !important; border-inline-start-style: solid !important; }
+.br-s-2 { border-inline-start-width: var(--pg-brw-2) !important; border-inline-start-style: solid !important; }
+.br-s-3 { border-inline-start-width: var(--pg-brw-3) !important; border-inline-start-style: solid !important; }
+
+.br-e-0 { border-inline-end-width: var(--pg-brw-0) !important; border-inline-end-style: solid !important; }
+.br-e-1 { border-inline-end-width: var(--pg-brw-1) !important; border-inline-end-style: solid !important; }
+.br-e-2 { border-inline-end-width: var(--pg-brw-2) !important; border-inline-end-style: solid !important; }
+.br-e-3 { border-inline-end-width: var(--pg-brw-3) !important; border-inline-end-style: solid !important; }
+
+/* --- Border styles (apply to all sides) --- */
+.br-sol  { border-style: solid !important; }
+.br-dash { border-style: dashed !important; }
+.br-dot  { border-style: dotted !important; }
+
+/* --- Border color helpers --- */
+.brc-current { border-color: currentColor !important; }
+
+/* Hook to a custom CSS variable for color theming:
+   Usage: element { --pg-brc: #XYZ; } then add .br-1 (or side variants) */
+.brc-var { border-color: var(--pg-brc) !important; }
+
+
+/* =======================================================================
+   3) BORDER RADIUS UTILITIES
+   -----------------------------------------------------------------------
+   Global radius and per-corner logical controls.
+   - Global: .rd-0 / .rd-sm / .rd-md / .rd-lg / .rd-xl / .rd-full
+   - Sides:  .rd-t / .rd-b / .rd-s / .rd-e
+   - Corners (logical): .rd-ts / .rd-te / .rd-bs / .rd-be
+   ======================================================================= */
+
+/* --- Global radius --- */
+.rd-0   { border-radius: var(--pg-rd-0) !important; }
+.rd-sm  { border-radius: var(--pg-rd-sm) !important; }
+.rd-md  { border-radius: var(--pg-rd-md) !important; }
+.rd-lg  { border-radius: var(--pg-rd-lg) !important; }
+.rd-xl  { border-radius: var(--pg-rd-xl) !important; }
+.rd-full{ border-radius: var(--pg-rd-full) !important; }
+
+/* --- Per-side radius (logical sides) --- */
+.rd-t { border-start-start-radius: var(--pg-rd-md) !important; border-start-end-radius: var(--pg-rd-md) !important; }
+.rd-b { border-end-start-radius:   var(--pg-rd-md) !important; border-end-end-radius:   var(--pg-rd-md) !important; }
+.rd-s { border-start-start-radius: var(--pg-rd-md) !important; border-end-start-radius: var(--pg-rd-md) !important; }
+.rd-e { border-start-end-radius:   var(--pg-rd-md) !important; border-end-end-radius:   var(--pg-rd-md) !important; }
+
+/* --- Per-corner radius (logical corners) --- */
+.rd-ts { border-start-start-radius: var(--pg-rd-md) !important; }
+.rd-te { border-start-end-radius:   var(--pg-rd-md) !important; }
+.rd-bs { border-end-start-radius:   var(--pg-rd-md) !important; }
+.rd-be { border-end-end-radius:     var(--pg-rd-md) !important; }
+
+/* Size variants for corners (optional granularity) */
+.rd-ts-sm { border-start-start-radius: var(--pg-rd-sm) !important; }
+.rd-te-sm { border-start-end-radius:   var(--pg-rd-sm) !important; }
+.rd-bs-sm { border-end-start-radius:   var(--pg-rd-sm) !important; }
+.rd-be-sm { border-end-end-radius:     var(--pg-rd-sm) !important; }
+
+.rd-ts-lg { border-start-start-radius: var(--pg-rd-lg) !important; }
+.rd-te-lg { border-start-end-radius:   var(--pg-rd-lg) !important; }
+.rd-bs-lg { border-end-start-radius:   var(--pg-rd-lg) !important; }
+.rd-be-lg { border-end-end-radius:     var(--pg-rd-lg) !important; }
+
+
+/* =======================================================================
+   4) SHADOW UTILITIES
+   -----------------------------------------------------------------------
+   Outset and inset shadows in three strengths.
+   - Outset: .sd-0 / .sd-1 / .sd-2 / .sd-3
+   - Inset:  .sd-in-1 / .sd-in-2 / .sd-in-3
+   ======================================================================= */
+
+/* --- Outset (drop) shadows --- */
+.sd-0 { box-shadow: none !important; }
+.sd-1 { box-shadow: var(--pg-sd-1) !important; }
+.sd-2 { box-shadow: var(--pg-sd-2) !important; }
+.sd-3 { box-shadow: var(--pg-sd-3) !important; }
+
+/* --- Inset shadows --- */
+.sd-in-1 { box-shadow: inset 0 1px 2px rgba(0,0,0,.12) !important; }
+.sd-in-2 { box-shadow: inset 0 2px 6px rgba(0,0,0,.16) !important; }
+.sd-in-3 { box-shadow: inset 0 4px 10px rgba(0,0,0,.20) !important; }

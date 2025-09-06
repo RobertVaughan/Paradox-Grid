@@ -2,14 +2,17 @@
 /* BEGIN PARADOX GRID SETUP */
 
 @import 'includes/0 - normalize.css';
+@import 'includes/1 - paradox-borders.css';
+@import 'includes/1 - paradox-sizing.css';
+@import 'includes/1 - paradox-spacing.css';
 @import 'includes/1 - paradox-typography.css';
 @import 'includes/1 - paradox-utilities.css';
-@import 'includes/2 - paradox-xs-flex.css';
-@import 'includes/3 - paradox-sm-flex.css';
-@import 'includes/4 - paradox-md-flex.css';
-@import 'includes/5 - paradox-lg-flex.css';
-@import 'includes/6 - paradox-xl-flex.css';
-@import 'includes/7 - paradox-xxl-flex.css';
+@import 'includes/2 - paradox-xs.css';
+@import 'includes/3 - paradox-sm.css';
+@import 'includes/4 - paradox-md.css';
+@import 'includes/5 - paradox-lg.css';
+@import 'includes/6 - paradox-xl.css';
+@import 'includes/7 - paradox-xxl.css';
 
 :root {
   --col-0: 0%;

@@ -1,3 +1,97 @@
+/* =======================================================================
+   Paradox-Grid: Colors
+   -----------------------------------------------------------------------
+   Purpose:
+     - Centralized color utilities for backgrounds and text.
+     - Adds semantic color tokens & helpers while preserving ALL existing
+       project-specific color classes (do not remove or rename).
+   Notes:
+     - Class names remain Bootstrap-distinct (.b-* for background, .t-* for text).
+     - This file extends your palette with semantic variables and utilities,
+       border-color helpers, and a few quality-of-life patterns.
+   Contents:
+     1) Semantic Color Variables (CSS custom properties)
+     2) Semantic Utility Classes (bg/text/border)
+     3) Existing Background Color Classes  (UNMODIFIED)
+     4) Existing Text Color Classes        (UNMODIFIED)
+     5) Brown Class Aliases (dot-prefixed fixes; originals kept)
+     6) Utility Add-ons (contrast helpers, subtle effects, gradients)
+   ======================================================================= */
+
+
+/* =======================================================================
+   1) SEMANTIC COLOR VARIABLES
+   -----------------------------------------------------------------------
+   Map your existing palette to high-level tokens. Adjust these to theme.
+   ======================================================================= */
+
+:root {
+  /* Core semantic hues (aligned to your current palette) */
+  --pg-pr:   #5577cc; /* primary   → matches .b-blue */
+  --pg-sc:   #883399; /* secondary → matches .b-purple */
+  --pg-suc:  #22aa33; /* success   → matches .b-green */
+  --pg-warn: #e67e22; /* warning   → matches .b-orange */
+  --pg-err:  #e22c2c; /* danger    → matches .b-red */
+  --pg-info: #3399aa; /* info/teal → close to .b-teal-l2 (#39a) */
+
+  /* Neutrals */
+  --pg-lt:   #fefefe; /* light surface */
+  --pg-dk:   #02080F; /* dark surface */
+  --pg-mute: #bbbbbf; /* mid gray     */
+
+  /* Readability helpers */
+  --pg-on-dark: #ffffff;
+  --pg-on-light: #02080F;
+}
+
+
+/* =======================================================================
+   2) SEMANTIC UTILITY CLASSES
+   -----------------------------------------------------------------------
+   Short, composable helpers that leverage the variables above.
+   Also provides border-color utilities to pair with your borders module.
+   ======================================================================= */
+
+/* Background (semantic) */
+.b-pr    { background-color: var(--pg-pr) !important; }
+.b-sc    { background-color: var(--pg-sc) !important; }
+.b-suc   { background-color: var(--pg-suc) !important; }
+.b-warn  { background-color: var(--pg-warn) !important; }
+.b-err   { background-color: var(--pg-err) !important; }
+.b-info  { background-color: var(--pg-info) !important; }
+.b-lt    { background-color: var(--pg-lt) !important; }
+.b-dk    { background-color: var(--pg-dk) !important; }
+.b-mute  { background-color: var(--pg-mute) !important; }
+
+/* Text (semantic) */
+.t-pr    { color: var(--pg-pr) !important; }
+.t-sc    { color: var(--pg-sc) !important; }
+.t-suc   { color: var(--pg-suc) !important; }
+.t-warn  { color: var(--pg-warn) !important; }
+.t-err   { color: var(--pg-err) !important; }
+.t-info  { color: var(--pg-info) !important; }
+.t-lt    { color: var(--pg-lt) !important; }
+.t-dk    { color: var(--pg-dk) !important; }
+.t-mute  { color: var(--pg-mute) !important; }
+
+/* Border color helpers (pairs with 1 - paradox-borders.css) */
+.brc-pr    { border-color: var(--pg-pr) !important; }
+.brc-sc    { border-color: var(--pg-sc) !important; }
+.brc-suc   { border-color: var(--pg-suc) !important; }
+.brc-warn  { border-color: var(--pg-warn) !important; }
+.brc-err   { border-color: var(--pg-err) !important; }
+.brc-info  { border-color: var(--pg-info) !important; }
+.brc-lt    { border-color: var(--pg-lt) !important; }
+.brc-dk    { border-color: var(--pg-dk) !important; }
+.brc-mute  { border-color: var(--pg-mute) !important; }
+
+
+/* =======================================================================
+   3) EXISTING BACKGROUND COLOR CLASSES (UNMODIFIED)
+   -----------------------------------------------------------------------
+   Retained exactly as provided. These are your project-specific swatches.
+   ======================================================================= */
+
 /*========== COLOR DEFINITIONS ==========*/
 
 /* SET BACKGROUND COLORS */
@@ -230,6 +324,12 @@ b-brown-d3 {
 	background-color: #2c3e50;
 }
 
+
+/* =======================================================================
+   4) EXISTING TEXT COLOR CLASSES (UNMODIFIED)
+   -----------------------------------------------------------------------
+   Retained exactly as provided. These mirror the background swatches.
+   ======================================================================= */
 
 /* SET TEXT COLORS */
 .white {
@@ -474,4 +574,79 @@ b-brown-d2 {
 }
 b-brown-d3 {
 	color: #552200;
+}
+
+
+/* =======================================================================
+   5) BROWN CLASS ALIASES (FIXED SELECTORS)
+   -----------------------------------------------------------------------
+   Your original file had several brown classes missing the leading dot.
+   To preserve backward compatibility, the originals remain above; here are
+   corrected, dot-prefixed aliases that actually apply styles.
+   ======================================================================= */
+
+/* Background (brown fixes) */
+.b-brown-l3 { background-color: #bb882f; }
+.b-brown-l2 { background-color: #aa772f; }
+.b-brown-l1 { background-color: #996622; } /* expanded for clarity */
+.b-brown    { background-color: #885511; }
+.b-brown-d1 { background-color: #774411; }
+.b-brown-d2 { background-color: #663300; }
+.b-brown-d3 { background-color: #552200; }
+
+/* Text (brown fixes) */
+.t-brown-l3 { color: #bb882f; }
+.t-brown-l2 { color: #aa772f; }
+.t-brown-l1 { color: #996622; }
+.t-brown    { color: #885511; }
+.t-brown-d1 { color: #774411; }
+.t-brown-d2 { color: #663300; }
+.t-brown-d3 { color: #552200; }
+
+
+/* =======================================================================
+   6) UTILITY ADD-ONS
+   -----------------------------------------------------------------------
+   A few small helpers to improve readability and visual polish.
+   ======================================================================= */
+
+/* Auto text contrast helpers (manual use) */
+.t-on-dark { color: var(--pg-on-dark) !important; }  /* e.g., on .b-pr/.b-dk */
+.t-on-light{ color: var(--pg-on-light) !important; } /* e.g., on .b-lt */
+
+/* Subtle hover/active effects for colored blocks (opt-in) */
+.fx-brighten:hover { filter: brightness(1.08); }
+.fx-darken:hover   { filter: brightness(0.92); }
+.fx-saturate:hover { filter: saturate(1.1); }
+
+/* Simple gradients using semantic tokens (kept subtle) */
+.b-grad-pr {
+  background-image: linear-gradient(180deg,
+    color-mix(in srgb, var(--pg-pr) 92%, #fff 8%),
+    var(--pg-pr));
+}
+.b-grad-sc {
+  background-image: linear-gradient(180deg,
+    color-mix(in srgb, var(--pg-sc) 92%, #fff 8%),
+    var(--pg-sc));
+}
+.b-grad-suc {
+  background-image: linear-gradient(180deg,
+    color-mix(in srgb, var(--pg-suc) 92%, #fff 8%),
+    var(--pg-suc));
+}
+.b-grad-warn {
+  background-image: linear-gradient(180deg,
+    color-mix(in srgb, var(--pg-warn) 92%, #fff 8%),
+    var(--pg-warn));
+}
+.b-grad-err {
+  background-image: linear-gradient(180deg,
+    color-mix(in srgb, var(--pg-err) 92%, #fff 8%),
+    var(--pg-err));
+}
+.b-grad-info {
+  background-image: linear-gradient(180deg,
+    color-mix(in srgb, var(--pg-info) 92%, #fff 8%),
+    var(--pg-info));
 }

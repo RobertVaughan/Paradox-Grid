@@ -1,0 +1,439 @@
+/* =======================================================================
+   Paradox-Grid: Themes
+   File: includes/1 - paradox-themes.css
+   -----------------------------------------------------------------------
+   Purpose:
+     - Provide Light and Dark themes using CSS variables.
+     - Keep names Bootstrap-distinct and map variables to existing modules:
+       colors, forms, tables, dropdowns, borders/shadows, elements, etc.
+   How to use:
+     1) Default (auto): add `.theme-auto` on <html> or <body>. It will follow
+        the user's OS preference via prefers-color-scheme.
+     2) Force Light: add `.theme-light` OR `[data-theme="light"]` on <html>/<body>.
+     3) Force Dark:  add `.theme-dark`  OR `[data-theme="dark"]`  on <html>/<body>.
+     4) Optional: add a hue utility (e.g., `.theme-hue-blue`) alongside to
+        swap primary/secondary hues at runtime.
+
+   Example:
+     <html class="theme-auto theme-hue-blue">
+       ...
+     </html>
+
+   Notes:
+     - Variables here are consumed by earlier files (colors, forms, tables, etc).
+     - Components that used hard-coded colors will still work; these variables
+       ensure the majority of UI flips correctly without rewriting components.
+     - Keep this file loaded AFTER your base tokens so overrides apply.
+   ======================================================================= */
+
+
+/* =======================================================================
+   0) BASE & FALLBACK TOKENS (Light defaults)
+   -----------------------------------------------------------------------
+   These establish the *default* theme (Light) at :root. Dark overrides
+   are applied below via `.theme-dark` and prefers-color-scheme.
+   ======================================================================= */
+
+:root {
+  /* --- Semantic hues (align with 1 - paradox-colors.css) --- */
+  --pg-pr:   #5577cc; /* primary */
+  --pg-sc:   #883399; /* secondary */
+  --pg-suc:  #22aa33; /* success */
+  --pg-warn: #e67e22; /* warning */
+  --pg-err:  #e22c2c; /* danger */
+  --pg-info: #3399aa; /* info */
+
+  /* --- Neutrals & surfaces --- */
+  --pg-lt:   #ffffff; /* light surface */
+  --pg-dk:   #02080F; /* dark surface */
+  --pg-mute: #bbbbbf; /* mid gray (borders, muted text) */
+
+  /* Foreground on backgrounds */
+  --pg-on-light: #02080F; /* text/icons on light surfaces */
+  --pg-on-dark:  #ffffff; /* text/icons on dark surfaces */
+
+  /* --- Page scaffolding --- */
+  --pg-page-bg:   #ffffff;
+  --pg-page-fg:   #02080F;
+  --pg-card-bg:   #ffffff;
+  --pg-card-bd:   #e6e6e9;
+  --pg-elev-1:    0 2px 6px rgba(0,0,0,.08);
+  --pg-elev-2:    0 6px 16px rgba(0,0,0,.12);
+
+  /* --- Focus rings --- */
+  --pg-ring:        rgba(85,119,204,.35);   /* pr tint */
+  --pg-ring-err:    rgba(226,44,44,.35);
+  --pg-ring-suc:    rgba(34,170,51,.35);
+
+  /* --- Borders & shadows (used by borders.css) --- */
+  --pg-brc:     currentColor; /* default border color */
+  --pg-sd-1:    0 1px 2px rgba(0,0,0,.08), 0 1px 1px rgba(0,0,0,.04);
+  --pg-sd-2:    0 4px 8px rgba(0,0,0,.10), 0 2px 4px rgba(0,0,0,.06);
+  --pg-sd-3:    0 10px 16px rgba(0,0,0,.12), 0 5px 8px rgba(0,0,0,.08);
+
+  /* --- Forms (consumed by 1 - paradox-forms.css) --- */
+  --pg-form-bg:       #ffffff;
+  --pg-form-fg:       #20242a;
+  --pg-form-ph:       #8a9099;
+  --pg-form-bd:       #dfe3e8;
+  --pg-form-bd-hover: #c8cfd6;
+  --pg-form-ring:     var(--pg-ring);
+  --pg-form-ring-err: var(--pg-ring-err);
+  --pg-form-ring-suc: var(--pg-ring-suc);
+
+  /* --- Tables (consumed by elements.css tables section) --- */
+  --pg-tbl-bg:      #ffffff;
+  --pg-tbl-fg:      #02080F;
+  --pg-tbl-bd:      #e6e6e9;
+  --pg-tbl-hd-bg:   rgba(0,0,0,.03);
+  --pg-tbl-hd-fg:   #313136;
+  --pg-tbl-stripe:  rgba(0,0,0,.025);
+  --pg-tbl-hover:   rgba(0,0,0,.05);
+
+  /* --- Dropdowns / Menus (consumed by elements.css dropdowns) --- */
+  --pg-drop-bg: #ffffff;
+  --pg-drop-fg: #02080F;
+  --pg-drop-bd: #e6e6e9;
+  --pg-drop-sh: 0 8px 24px rgba(0,0,0,.12);
+  --pg-drop-rd: 8px;
+
+  /* --- Buttons (optional mapping; used by elements.css) --- */
+  --pg-btn-pr:   var(--pg-pr);
+  --pg-btn-sc:   var(--pg-sc);
+  --pg-btn-err:  var(--pg-err);
+  --pg-btn-warn: var(--pg-warn);
+  --pg-btn-suc:  var(--pg-suc);
+  --pg-btn-txt:  #ffffff;
+  --pg-btn-outline: #777;
+
+  /* --- Nav / SideNav / Modal / Tooltip (shared-ish tokens) --- */
+  --pg-nav-bg:     #ffffff;
+  --pg-nav-fg:     #02080F;
+  --pg-nav-bd:     #ececec;
+
+  --pg-side-bg:    #ffffff;
+  --pg-side-fg:    #02080F;
+  --pg-side-bd:    #ececec;
+
+  --pg-modal-bg:   #ffffff;
+  --pg-modal-fg:   #02080F;
+  --pg-backdrop:   rgba(2,8,15,.55);
+
+  --pg-tip-bg:     #02080F;
+  --pg-tip-fg:     #ffffff;
+
+  /* --- Links --- */
+  --pg-link:       var(--pg-pr);
+  --pg-link-hov:   #4668bd;
+
+  /* --- Global typography surfaces --- */
+  color-scheme: light; /* inform UA controls */
+}
+
+/* Base page application (optional but useful) */
+html, body {
+  background: var(--pg-page-bg);
+  color: var(--pg-page-fg);
+}
+
+/* Optional: make links theme-aware globally */
+a { color: var(--pg-link); }
+a:hover { color: var(--pg-link-hov); }
+
+/* Smooth theme transitions (dev toggle nicety) */
+.theme-animate * {
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+
+
+/* =======================================================================
+   1) DARK THEME OVERRIDES
+   -----------------------------------------------------------------------
+   Applied when `.theme-dark` or `[data-theme="dark"]` is present on a
+   container (html/body). Keeps tokens aligned with prior modules.
+   ======================================================================= */
+
+.theme-dark, [data-theme="dark"] {
+  /* Re-hue or dim as needed to maintain contrast */
+  --pg-pr:   #6a8ff5; /* slightly brighter primary for dark bg */
+  --pg-sc:   #b277e5;
+  --pg-suc:  #3ddc6c;
+  --pg-warn: #ff9f50;
+  --pg-err:  #ff6464;
+  --pg-info: #4fc3e7;
+
+  --pg-lt:   #0f1318;    /* light surface becomes dark */
+  --pg-dk:   #e8eef5;    /* dark surface becomes light (for on-dark text) */
+  --pg-mute: #808691;
+
+  --pg-on-light: #e8eef5;
+  --pg-on-dark:  #0f1318;
+
+  --pg-page-bg:   #0b0f14;
+  --pg-page-fg:   #e8eef5;
+  --pg-card-bg:   #11161d;
+  --pg-card-bd:   #232a33;
+  --pg-elev-1:    0 2px 8px rgba(0,0,0,.45);
+  --pg-elev-2:    0 10px 24px rgba(0,0,0,.55);
+
+  --pg-ring:        rgba(106,143,245,.35);
+  --pg-ring-err:    rgba(255,100,100,.35);
+  --pg-ring-suc:    rgba(61,220,108,.35);
+
+  /* Borders & shadows */
+  --pg-brc:     #2a323d;
+  --pg-sd-1:    0 1px 2px rgba(0,0,0,.5), 0 1px 1px rgba(0,0,0,.25);
+  --pg-sd-2:    0 4px 10px rgba(0,0,0,.55), 0 2px 4px rgba(0,0,0,.35);
+  --pg-sd-3:    0 12px 20px rgba(0,0,0,.6),  0 6px 10px rgba(0,0,0,.45);
+
+  /* Forms */
+  --pg-form-bg:       #0f141a;
+  --pg-form-fg:       #e1e7ef;
+  --pg-form-ph:       #8f97a3;
+  --pg-form-bd:       #25303b;
+  --pg-form-bd-hover: #2f3b47;
+  --pg-form-ring:     var(--pg-ring);
+
+  /* Tables */
+  --pg-tbl-bg:      #0f141a;
+  --pg-tbl-fg:      #e1e7ef;
+  --pg-tbl-bd:      #27313c;
+  --pg-tbl-hd-bg:   rgba(255,255,255,.04);
+  --pg-tbl-hd-fg:   #c8d0da;
+  --pg-tbl-stripe:  rgba(255,255,255,.02);
+  --pg-tbl-hover:   rgba(255,255,255,.06);
+
+  /* Dropdowns / Menus */
+  --pg-drop-bg: #121821;
+  --pg-drop-fg: #e1e7ef;
+  --pg-drop-bd: #2a3440;
+  --pg-drop-sh: 0 10px 28px rgba(0,0,0,.6);
+
+  /* Buttons */
+  --pg-btn-pr:   var(--pg-pr);
+  --pg-btn-sc:   var(--pg-sc);
+  --pg-btn-err:  var(--pg-err);
+  --pg-btn-warn: var(--pg-warn);
+  --pg-btn-suc:  var(--pg-suc);
+  --pg-btn-txt:  #0b0f14;           /* dark-mode: high-contrast text on bright buttons */
+  --pg-btn-outline: #9aa3af;
+
+  /* Nav / Side / Modal / Tooltip */
+  --pg-nav-bg:   #0f141a;
+  --pg-nav-fg:   #e8eef5;
+  --pg-nav-bd:   #232a33;
+
+  --pg-side-bg:  #0f141a;
+  --pg-side-fg:  #e8eef5;
+  --pg-side-bd:  #232a33;
+
+  --pg-modal-bg: #11161d;
+  --pg-modal-fg: #e8eef5;
+  --pg-backdrop: rgba(0,0,0,.6);
+
+  --pg-tip-bg:   #e8eef5;
+  --pg-tip-fg:   #0b0f14;
+
+  --pg-link:     var(--pg-pr);
+  --pg-link-hov: #87a6ff;
+
+  color-scheme: dark; /* inform UA controls */
+}
+
+/* Apply base colors to page in forced dark mode */
+.theme-dark body, [data-theme="dark"] body {
+  background: var(--pg-page-bg);
+  color: var(--pg-page-fg);
+}
+
+
+/* =======================================================================
+   2) AUTO THEME (FOLLOW OS PREFERENCE)
+   -----------------------------------------------------------------------
+   Use `.theme-auto` to opt into auto switching without JS. Defaults to
+   Light; flips to Dark when the user’s OS is dark.
+   ======================================================================= */
+
+.theme-auto {
+  /* no overrides needed here; just a hook for @media below */
+}
+
+/* When .theme-auto is present, apply dark overrides under media query */
+@media (prefers-color-scheme: dark) {
+  .theme-auto {
+    /* Reuse the same variables as .theme-dark */
+    --pg-pr:   #6a8ff5;
+    --pg-sc:   #b277e5;
+    --pg-suc:  #3ddc6c;
+    --pg-warn: #ff9f50;
+    --pg-err:  #ff6464;
+    --pg-info: #4fc3e7;
+
+    --pg-lt:   #0f1318;
+    --pg-dk:   #e8eef5;
+    --pg-mute: #808691;
+
+    --pg-on-light: #e8eef5;
+    --pg-on-dark:  #0f1318;
+
+    --pg-page-bg:   #0b0f14;
+    --pg-page-fg:   #e8eef5;
+    --pg-card-bg:   #11161d;
+    --pg-card-bd:   #232a33;
+    --pg-elev-1:    0 2px 8px rgba(0,0,0,.45);
+    --pg-elev-2:    0 10px 24px rgba(0,0,0,.55);
+
+    --pg-ring:        rgba(106,143,245,.35);
+    --pg-ring-err:    rgba(255,100,100,.35);
+    --pg-ring-suc:    rgba(61,220,108,.35);
+
+    --pg-brc:     #2a323d;
+    --pg-sd-1:    0 1px 2px rgba(0,0,0,.5), 0 1px 1px rgba(0,0,0,.25);
+    --pg-sd-2:    0 4px 10px rgba(0,0,0,.55), 0 2px 4px rgba(0,0,0,.35);
+    --pg-sd-3:    0 12px 20px rgba(0,0,0,.6),  0 6px 10px rgba(0,0,0,.45);
+
+    --pg-form-bg:       #0f141a;
+    --pg-form-fg:       #e1e7ef;
+    --pg-form-ph:       #8f97a3;
+    --pg-form-bd:       #25303b;
+    --pg-form-bd-hover: #2f3b47;
+    --pg-form-ring:     var(--pg-ring);
+
+    --pg-tbl-bg:      #0f141a;
+    --pg-tbl-fg:      #e1e7ef;
+    --pg-tbl-bd:      #27313c;
+    --pg-tbl-hd-bg:   rgba(255,255,255,.04);
+    --pg-tbl-hd-fg:   #c8d0da;
+    --pg-tbl-stripe:  rgba(255,255,255,.02);
+    --pg-tbl-hover:   rgba(255,255,255,.06);
+
+    --pg-drop-bg: #121821;
+    --pg-drop-fg: #e1e7ef;
+    --pg-drop-bd: #2a3440;
+    --pg-drop-sh: 0 10px 28px rgba(0,0,0,.6);
+
+    --pg-btn-pr:   var(--pg-pr);
+    --pg-btn-sc:   var(--pg-sc);
+    --pg-btn-err:  var(--pg-err);
+    --pg-btn-warn: var(--pg-warn);
+    --pg-btn-suc:  var(--pg-suc);
+    --pg-btn-txt:  #0b0f14;
+    --pg-btn-outline: #9aa3af;
+
+    --pg-nav-bg:   #0f141a;
+    --pg-nav-fg:   #e8eef5;
+    --pg-nav-bd:   #232a33;
+
+    --pg-side-bg:  #0f141a;
+    --pg-side-fg:  #e8eef5;
+    --pg-side-bd:  #232a33;
+
+    --pg-modal-bg: #11161d;
+    --pg-modal-fg: #e8eef5;
+    --pg-backdrop: rgba(0,0,0,.6);
+
+    --pg-tip-bg:   #e8eef5;
+    --pg-tip-fg:   #0b0f14;
+
+    --pg-link:     var(--pg-pr);
+    --pg-link-hov: #87a6ff;
+
+    color-scheme: dark;
+  }
+}
+
+
+/* =======================================================================
+   3) OPTIONAL HUE SWAPPERS (Dynamic brand tweaks)
+   -----------------------------------------------------------------------
+   Stack one of these on <html>/<body> to quickly change primary/secondary.
+   Safe for both light and dark because other tokens derive from these.
+   ======================================================================= */
+
+.theme-hue-blue    { --pg-pr: #3b82f6; --pg-link: #3b82f6; --pg-link-hov: #2563eb; }
+.theme-hue-purple  { --pg-pr: #8b5cf6; --pg-link: #8b5cf6; --pg-link-hov: #7c3aed; }
+.theme-hue-teal    { --pg-pr: #14b8a6; --pg-link: #14b8a6; --pg-link-hov: #0d9488; }
+.theme-hue-rose    { --pg-pr: #f43f5e; --pg-link: #f43f5e; --pg-link-hov: #e11d48; }
+.theme-hue-amber   { --pg-pr: #f59e0b; --pg-link: #f59e0b; --pg-link-hov: #d97706; }
+.theme-hue-emerald { --pg-pr: #10b981; --pg-link: #10b981; --pg-link-hov: #059669; }
+
+/* Secondary accent quick-tweaks (optional) */
+.theme-acc-indigo  { --pg-sc: #6366f1; }
+.theme-acc-pink    { --pg-sc: #ec4899; }
+.theme-acc-cyan    { --pg-sc: #06b6d4; }
+
+
+/* =======================================================================
+   4) MAPPINGS TO EXISTING COMPONENTS (optional helpers)
+   -----------------------------------------------------------------------
+   If you want global elements to auto-use themed surfaces without adding
+   extra classes, you can opt-in with these helpers.
+   Usage:
+     <body class="use-themed-surfaces">
+       ...
+     </body>
+   ======================================================================= */
+
+.use-themed-surfaces .card-container {
+  background: var(--pg-card-bg);
+  border-color: var(--pg-card-bd);
+  box-shadow: var(--pg-sd-1);
+}
+.use-themed-surfaces .card-header {
+  background: var(--pg-card-bg); /* fallback for browsers without color-mix */
+  background: color-mix(in srgb, var(--pg-card-bg) 92%, #000 8%);
+  border-bottom-color: var(--pg-card-bd);
+}
+.use-themed-surfaces .card-footer {
+  background: var(--pg-card-bg); /* fallback for browsers without color-mix */
+  background: color-mix(in srgb, var(--pg-card-bg) 96%, #000 4%);
+  border-top-color: var(--pg-card-bd);
+}
+.use-themed-surfaces .nav-bar {
+  background: var(--pg-nav-bg);
+  color: var(--pg-nav-fg);
+  border-bottom-color: var(--pg-nav-bd);
+}
+.use-themed-surfaces .side-nav {
+  background: var(--pg-side-bg);
+  color: var(--pg-side-fg);
+  border-right-color: var(--pg-side-bd);
+}
+.use-themed-surfaces .modal-box {
+  background: var(--pg-modal-bg);
+  color: var(--pg-modal-fg);
+}
+.use-themed-surfaces .modal-backdrop {
+  background: var(--pg-backdrop);
+}
+.use-themed-surfaces .drop-menu {
+  background: var(--pg-drop-bg);
+  color: var(--pg-drop-fg);
+  border-color: var(--pg-drop-bd);
+  box-shadow: var(--pg-drop-sh);
+}
+.use-themed-surfaces .tip::after {
+  background: var(--pg-tip-bg);
+  color: var(--pg-tip-fg);
+}
+
+
+/* =======================================================================
+   5) PRINT TWEAKS (theme-aware)
+   -----------------------------------------------------------------------
+   Keep prints legible regardless of theme.
+   ======================================================================= */
+
+@media print {
+  :root,
+  .theme-dark,
+  .theme-auto {
+    --pg-page-bg: #ffffff;
+    --pg-page-fg: #000000;
+    --pg-card-bg: #ffffff;
+    --pg-card-bd: #cccccc;
+    --pg-link: #000000;
+    --pg-link-hov: #000000;
+    color-scheme: light;
+  }
+}

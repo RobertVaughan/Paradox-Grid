@@ -1,0 +1,656 @@
+/* =======================================================================
+   Paradox-Grid: Forms
+   File: includes/1 - paradox-forms.css
+   -----------------------------------------------------------------------
+   Purpose:
+     Lightweight, Bootstrap-distinct form styles and utilities that pair
+     with Paradox-Grid spacing, colors, borders, and typography.
+
+   Naming (kept short and distinct from Bootstrap):
+     .field         → wrapper for a single control (label + control + hint)
+     .label         → label element (can be <label> or .label on any tag)
+     .inpt          → text-like inputs (text, email, password, number, search)
+     .area          → textarea
+     .pick          → select
+     .chk           → checkbox input (with .chk-box + .chk-lbl)
+     .rad           → radio input    (with .rad-dot + .rad-lbl)
+     .sw            → switch (checkbox underpin)
+     .rng           → range input
+     .file          → file input wrapper (with .file-inpt + .file-btn + .file-name)
+     .grp           → input group (addons/buttons attached to inputs)
+     .hint          → helper/assistive text
+     .msg-ok        → success text
+     .msg-err       → error text
+     .is-valid      → valid state on .field or control
+     .is-invalid    → invalid state on .field or control
+     .req           → “required” asterisk helper on labels
+
+   Features:
+     - Focus rings with :focus-visible and :focus-within
+     - Disabled/read-only states
+     - Validation states
+     - Floating labels (optional pattern: .float on .field)
+     - Input groups
+     - Size variants (.sm / .lg)
+     - Compact CSS-only switches, checkboxes, radios
+     - Range & file input styling
+
+   NOTE:
+     - Colors borrow semantic CSS variables from 1 - paradox-colors.css when present.
+       Safe fallbacks are included.
+   ======================================================================= */
+
+
+/* =======================================================================
+   0) TOKENS / VARIABLES
+   ======================================================================= */
+
+:root{
+  /* Palette fallbacks (will use vars from paradox-colors.css if set) */
+  --pg-pr:   var(--pg-pr,   #5577cc);
+  --pg-err:  var(--pg-err,  #e22c2c);
+  --pg-suc:  var(--pg-suc,  #22aa33);
+  --pg-warn: var(--pg-warn, #e67e22);
+  --pg-info: var(--pg-info, #3399aa);
+
+  --pg-dk:   var(--pg-dk,   #02080F);
+  --pg-lt:   var(--pg-lt,   #ffffff);
+  --pg-mute: var(--pg-mute, #bbbbbf);
+
+  /* Surfaces / borders */
+  --pg-form-bg: #fff;
+  --pg-form-bd: #dfe3e8;
+  --pg-form-bd-hover: #c8cfd6;
+  --pg-form-ring: rgba(85,119,204,.35);
+  --pg-form-ring-err: rgba(226,44,44,.35);
+  --pg-form-ring-suc: rgba(34,170,51,.35);
+
+  /* Text */
+  --pg-form-fg: #20242a;
+  --pg-form-ph: #8a9099;
+
+  /* Radii & spacing */
+  --pg-radius: 6px;
+  --pg-radius-pill: 999px;
+  --pg-pad-y: 8px;
+  --pg-pad-x: 10px;
+
+  /* Sizes */
+  --pg-h-sm: 30px;
+  --pg-h-md: 36px;
+  --pg-h-lg: 44px;
+  --pg-font-sm: .85rem;
+  --pg-font-md: .95rem;
+  --pg-font-lg: 1.05rem;
+
+  /* Transitions */
+  --pg-trans: .15s ease;
+}
+
+
+/* =======================================================================
+   1) BASE FIELD & LABEL
+   -----------------------------------------------------------------------
+   HTML:
+     <div class="field">
+       <label class="label" for="email">Email <span class="req">*</span></label>
+       <input class="inpt" id="email" type="email" placeholder="you@site.com">
+       <div class="hint">We’ll never share your email.</div>
+     </div>
+   ======================================================================= */
+
+.field{
+  display: block;
+  margin-bottom: 12px;
+}
+.label{
+  display: inline-block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.req{
+  color: var(--pg-err);
+}
+
+/* Focus-within highlight for the whole field block */
+.field:focus-within .label{
+  color: var(--pg-pr);
+}
+
+
+/* =======================================================================
+   2) TEXTUAL CONTROLS (.inpt, .area, .pick)
+   -----------------------------------------------------------------------
+   Applies to inputs, textarea, and select (distinct classes).
+   ======================================================================= */
+
+.inpt,
+.area,
+.pick{
+  width: 100%;
+  height: var(--pg-h-md);
+  padding: var(--pg-pad-y) var(--pg-pad-x);
+  border: 1px solid var(--pg-form-bd);
+  border-radius: var(--pg-radius);
+  background: var(--pg-form-bg);
+  color: var(--pg-form-fg);
+  font-size: var(--pg-font-md);
+  line-height: 1.2;
+  transition: border-color var(--pg-trans), box-shadow var(--pg-trans), background var(--pg-trans);
+}
+
+/* Placeholder */
+.inpt::placeholder,
+.area::placeholder{
+  color: var(--pg-form-ph);
+  opacity: 1;
+}
+
+/* Hover/focus */
+.inpt:hover, .area:hover, .pick:hover{
+  border-color: var(--pg-form-bd-hover);
+}
+.inpt:focus, .inpt:focus-visible,
+.area:focus, .area:focus-visible,
+.pick:focus, .pick:focus-visible{
+  outline: 0;
+  border-color: var(--pg-pr);
+  box-shadow: 0 0 0 3px var(--pg-form-ring);
+}
+
+/* Textarea sizing */
+.area{
+  min-height: 96px;
+  height: auto;
+  resize: vertical;
+}
+
+/* Select arrow (customize without breaking native) */
+.pick{
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #777 50%),
+    linear-gradient(135deg, #777 50%, transparent 50%),
+    linear-gradient(to right, #dfe3e8, #dfe3e8);
+  background-position:
+    calc(100% - 16px) 50%,
+    calc(100% - 11px) 50%,
+    calc(100% - 2.25rem) 50%;
+  background-size: 5px 5px, 5px 5px, 1px 60%;
+  background-repeat: no-repeat;
+  padding-right: 2.25rem;
+}
+
+/* Sizes */
+.inpt.sm, .area.sm, .pick.sm{ height: var(--pg-h-sm); font-size: var(--pg-font-sm); }
+.inpt.lg, .area.lg, .pick.lg{ height: var(--pg-h-lg); font-size: var(--pg-font-lg); }
+
+/* Disabled / read-only */
+.inpt[disabled], .area[disabled], .pick[disabled],
+.inpt.dis, .area.dis, .pick.dis{
+  background: #f4f6f8;
+  color: #8a9099;
+  cursor: not-allowed;
+}
+.inpt[readonly], .area[readonly]{ background: #fafbfc; }
+
+
+/* =======================================================================
+   3) HINTS & VALIDATION MESSAGES
+   -----------------------------------------------------------------------
+   HTML:
+     <div class="hint">Small helper text</div>
+     <div class="msg-err">Please enter a valid email.</div>
+     <div class="msg-ok">Looks good!</div>
+   ======================================================================= */
+
+.hint{
+  margin-top: 6px;
+  font-size: .82rem;
+  color: #717176;
+}
+.msg-err{
+  margin-top: 6px;
+  font-size: .82rem;
+  color: var(--pg-err);
+  font-weight: 600;
+}
+.msg-ok{
+  margin-top: 6px;
+  font-size: .82rem;
+  color: var(--pg-suc);
+  font-weight: 600;
+}
+
+/* Attach validation styling to .field or directly to control */
+.field.is-invalid .inpt,
+.field.is-invalid .area,
+.field.is-invalid .pick,
+.inpt.is-invalid, .area.is-invalid, .pick.is-invalid{
+  border-color: var(--pg-err);
+  box-shadow: 0 0 0 3px var(--pg-form-ring-err);
+}
+.field.is-valid .inpt,
+.field.is-valid .area,
+.field.is-valid .pick,
+.inpt.is-valid, .area.is-valid, .pick.is-valid{
+  border-color: var(--pg-suc);
+  box-shadow: 0 0 0 3px var(--pg-form-ring-suc);
+}
+
+
+/* =======================================================================
+   4) FLOATING LABELS (OPTIONAL)
+   -----------------------------------------------------------------------
+   HTML:
+     <div class="field float">
+       <input class="inpt" placeholder=" " id="fn">
+       <label class="label" for="fn">First Name</label>
+     </div>
+   Notes:
+     - Placeholder must be a single space to reserve height.
+   ======================================================================= */
+
+.field.float{
+  position: relative;
+  margin-top: 18px; /* room for floated label */
+}
+.field.float .label{
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  padding: 0 4px;
+  background: var(--pg-form-bg);
+  color: var(--pg-form-ph);
+  transition: transform var(--pg-trans), color var(--pg-trans), top var(--pg-trans), font-size var(--pg-trans);
+  pointer-events: none;
+}
+.field.float .inpt,
+.field.float .area,
+.field.float .pick{
+  padding-top: calc(var(--pg-pad-y) + 8px);
+  padding-bottom: var(--pg-pad-y);
+}
+.field.float .inpt:focus ~ .label,
+.field.float .area:focus ~ .label,
+.field.float .pick:focus ~ .label,
+.field.float .inpt:not(:placeholder-shown) ~ .label,
+.field.float .area:not(:placeholder-shown) ~ .label{
+  top: -10px;
+  transform: none;
+  font-size: .78rem;
+  color: var(--pg-pr);
+}
+
+
+/* =======================================================================
+   5) INPUT GROUPS (.grp)
+   -----------------------------------------------------------------------
+   HTML:
+     <div class="field">
+       <label class="label">Username</label>
+       <div class="grp">
+         <span class="grp-add">@</span>
+         <input class="inpt" type="text" placeholder="handle">
+         <button class="grp-btn btn btn-pr">Go</button>
+       </div>
+       <div class="hint">Your public handle</div>
+     </div>
+   ======================================================================= */
+
+.grp{
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+.grp > .inpt,
+.grp > .pick,
+.grp > .area{
+  flex: 1 1 auto;
+  border-radius: 0;
+  border-left: 0;
+}
+.grp > .inpt:first-child,
+.grp > .pick:first-child,
+.grp > .area:first-child{
+  border-radius: var(--pg-radius) 0 0 var(--pg-radius);
+  border-left: 1px solid var(--pg-form-bd);
+}
+.grp > .inpt:last-child,
+.grp > .pick:last-child{
+  border-radius: 0 var(--pg-radius) var(--pg-radius) 0;
+}
+
+.grp-add, .grp-btn{
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  border: 1px solid var(--pg-form-bd);
+  background: #f7f8fa;
+  color: #3a3f45;
+  white-space: nowrap;
+}
+.grp-add{
+  border-radius: var(--pg-radius) 0 0 var(--pg-radius);
+  border-right: 0;
+}
+.grp-btn{
+  border-radius: 0 var(--pg-radius) var(--pg-radius) 0;
+  border-left: 0;
+}
+
+/* Size sync */
+.grp.sm .inpt, .grp.sm .pick { height: var(--pg-h-sm); font-size: var(--pg-font-sm); }
+.grp.lg .inpt, .grp.lg .pick { height: var(--pg-h-lg); font-size: var(--pg-font-lg); }
+.grp.sm .grp-add, .grp.sm .grp-btn{ height: var(--pg-h-sm); font-size: var(--pg-font-sm); }
+.grp.lg .grp-add, .grp.lg .grp-btn{ height: var(--pg-h-lg); font-size: var(--pg-font-lg); }
+
+
+/* =======================================================================
+   6) CHECKBOXES (.chk) & RADIOS (.rad)
+   -----------------------------------------------------------------------
+   HTML (checkbox):
+     <label class="chk">
+       <input class="chk-inpt" type="checkbox">
+       <span class="chk-box"></span>
+       <span class="chk-lbl">Remember me</span>
+     </label>
+
+   HTML (radio):
+     <label class="rad">
+       <input class="rad-inpt" type="radio" name="r1">
+       <span class="rad-dot"></span>
+       <span class="rad-lbl">Option A</span>
+     </label>
+   ======================================================================= */
+
+/* Checkbox */
+.chk{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+.chk-inpt{
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.chk-box{
+  width: 18px; height: 18px;
+  border-radius: 4px;
+  border: 1px solid var(--pg-form-bd);
+  background: #fff;
+  display: inline-block;
+  position: relative;
+  transition: border-color var(--pg-trans), background var(--pg-trans), box-shadow var(--pg-trans);
+}
+.chk-inpt:focus-visible + .chk-box{
+  box-shadow: 0 0 0 3px var(--pg-form-ring);
+  border-color: var(--pg-pr);
+}
+.chk-inpt:checked + .chk-box{
+  background: var(--pg-pr);
+  border-color: var(--pg-pr);
+}
+.chk-inpt:checked + .chk-box::after{
+  content: "";
+  position: absolute;
+  left: 4px; top: 0px;
+  width: 6px; height: 12px;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(45deg);
+}
+.chk-lbl{ line-height: 1.2; }
+
+/* Radio */
+.rad{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+.rad-inpt{
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.rad-dot{
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 1px solid var(--pg-form-bd);
+  background: #fff;
+  display: inline-block;
+  position: relative;
+  transition: border-color var(--pg-trans), box-shadow var(--pg-trans);
+}
+.rad-inpt:focus-visible + .rad-dot{
+  box-shadow: 0 0 0 3px var(--pg-form-ring);
+  border-color: var(--pg-pr);
+}
+.rad-inpt:checked + .rad-dot{
+  border-color: var(--pg-pr);
+}
+.rad-inpt:checked + .rad-dot::after{
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: var(--pg-pr);
+}
+.rad-lbl{ line-height: 1.2; }
+
+/* Disabled */
+.chk-inpt:disabled + .chk-box,
+.rad-inpt:disabled + .rad-dot{
+  background: #f4f6f8;
+  border-color: #e3e7eb;
+  cursor: not-allowed;
+}
+.chk-inpt:disabled ~ .chk-lbl,
+.rad-inpt:disabled ~ .rad-lbl{
+  color: #8a9099;
+  cursor: not-allowed;
+}
+
+
+/* =======================================================================
+   7) SWITCH (.sw)
+   -----------------------------------------------------------------------
+   HTML:
+     <label class="sw">
+       <input class="sw-inpt" type="checkbox">
+       <span class="sw-trk"><span class="sw-knob"></span></span>
+       <span class="sw-lbl">Enable feature</span>
+     </label>
+   ======================================================================= */
+
+.sw{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.sw-inpt{
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.sw-trk{
+  width: 40px; height: 22px;
+  background: #e6e9ee;
+  border-radius: var(--pg-radius-pill);
+  position: relative;
+  transition: background var(--pg-trans), box-shadow var(--pg-trans);
+}
+.sw-knob{
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  transition: transform var(--pg-trans);
+}
+.sw-inpt:checked + .sw-trk{
+  background: var(--pg-pr);
+}
+.sw-inpt:checked + .sw-trk .sw-knob{
+  transform: translateX(18px);
+}
+.sw-inpt:focus-visible + .sw-trk{
+  box-shadow: 0 0 0 3px var(--pg-form-ring);
+}
+
+
+/* =======================================================================
+   8) RANGE (.rng)
+   -----------------------------------------------------------------------
+   HTML:
+     <input type="range" class="rng" min="0" max="100" value="40">
+   ======================================================================= */
+
+.rng{
+  width: 100%;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 22px;
+}
+.rng:focus{ outline: none; }
+.rng::-webkit-slider-runnable-track{
+  height: 6px;
+  border-radius: 999px;
+  background: #e3e7eb;
+}
+.rng::-moz-range-track{
+  height: 6px;
+  border-radius: 999px;
+  background: #e3e7eb;
+}
+.rng::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--pg-pr);
+  border: 2px solid #fff;
+  margin-top: -6px; /* center thumb */
+  box-shadow: 0 1px 3px rgba(0,0,0,.2);
+}
+.rng::-moz-range-thumb{
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--pg-pr);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,.2);
+}
+.rng:focus-visible::-webkit-slider-thumb{
+  box-shadow: 0 0 0 3px var(--pg-form-ring);
+}
+.rng:focus-visible::-moz-range-thumb{
+  box-shadow: 0 0 0 3px var(--pg-form-ring);
+}
+
+
+/* =======================================================================
+   9) FILE INPUT (.file)
+   -----------------------------------------------------------------------
+   HTML:
+     <label class="file">
+       <input class="file-inpt" type="file">
+       <span class="file-btn btn btn-outline">Choose File</span>
+       <span class="file-name">No file chosen</span>
+     </label>
+   JS (optional):
+     // On change: update .file-name textContent with selected file name(s)
+   ======================================================================= */
+
+.file{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.file-inpt{
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.file-btn{
+  white-space: nowrap;
+}
+.file-name{
+  font-size: .9rem;
+  color: #717176;
+}
+
+
+/* =======================================================================
+   10) INLINE / HORIZONTAL FORMS
+   -----------------------------------------------------------------------
+   Utilities for quick inline rows; pair with your grid if needed.
+
+   HTML:
+     <form class="form-row">
+       <div class="field">
+         <label class="label">Email</label>
+         <input class="inpt" type="email">
+       </div>
+       <div class="field">
+         <label class="label">Password</label>
+         <input class="inpt" type="password">
+       </div>
+       <button class="btn btn-pr">Sign in</button>
+     </form>
+   ======================================================================= */
+
+.form-row{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+}
+.form-row .field{
+  margin: 0;
+  min-width: 220px;
+  flex: 1 1 220px;
+}
+
+
+/* =======================================================================
+   11) VALIDATION STATES VIA ATTRIBUTES
+   -----------------------------------------------------------------------
+   Use aria-invalid and aria-describedby natively for better a11y.
+
+   HTML:
+     <div class="field">
+       <label class="label" for="a1">Email</label>
+       <input class="inpt" id="a1" type="email" aria-invalid="true" aria-describedby="a1-err">
+       <div class="msg-err" id="a1-err">Email is required.</div>
+     </div>
+   ======================================================================= */
+
+.inpt[aria-invalid="true"],
+.area[aria-invalid="true"],
+.pick[aria-invalid="true"]{
+  border-color: var(--pg-err);
+  box-shadow: 0 0 0 3px var(--pg-form-ring-err);
+}
+
+
+/* =======================================================================
+   12) ACCESSIBILITY / REDUCED MOTION
+   ======================================================================= */
+
+@media (prefers-reduced-motion: reduce){
+  .inpt, .area, .pick,
+  .chk-box, .rad-dot, .sw-trk, .sw-knob,
+  .grp-add, .grp-btn{
+    transition: none;
+  }
+}

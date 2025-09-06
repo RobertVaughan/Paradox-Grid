@@ -1,0 +1,171 @@
+/* ========================================
+   Paradox-Grid Sizing Utilities
+   ----------------------------------------
+   Short, Bootstrap-distinct naming:
+
+   Width (percentages):
+     .wd-0  .wd-25 .wd-33 .wd-50 .wd-66 .wd-75 .wd-100 .wd-auto
+     .wd-fit (fit-content) .wd-min (min-content) .wd-max (max-content)
+
+   Height (percentages / viewport):
+     .ht-0  .ht-25 .ht-33 .ht-50 .ht-66 .ht-75 .ht-100 .ht-auto
+     .vh-100 (100vh) .vw-100 (100vw)
+
+   Min/Max Width:
+     .mnw-0 .mnw-25 .mnw-50 .mnw-75 .mnw-100 .mnw-auto
+     .mxw-0 .mxw-25 .mxw-50 .mxw-75 .mxw-100 .mxw-none
+
+   Min/Max Height:
+     .mnh-0 .mnh-25 .mnh-50 .mnh-75 .mnh-100 .mnh-auto
+     .mxh-0 .mxh-25 .mxh-50 .mxh-75 .mxh-100 .mxh-none
+
+   Fixed lengths (rem scale):
+     Tokens: --pg-len-0..8  (0, .25, .5, .75, 1, 1.5, 2, 3, 4rem)
+     Width fixed:  .wdf-0..8
+     Height fixed: .htf-0..8
+     Square:       .sz-0..8  (sets both width & height)
+
+   Notes:
+   - Uses logical, non-conflicting names (wd/ht/mnw/mxw/etc.)
+   - Keep this module lightweight; responsive variants can be
+     added in a separate file if desired.
+   ======================================== */
+
+:root {
+  /* Fixed length scale (rem) */
+  --pg-len-0: 0;
+  --pg-len-1: 0.25rem;
+  --pg-len-2: 0.5rem;
+  --pg-len-3: 0.75rem;
+  --pg-len-4: 1rem;
+  --pg-len-5: 1.5rem;
+  --pg-len-6: 2rem;
+  --pg-len-7: 3rem;
+  --pg-len-8: 4rem;
+}
+
+/* =======================
+   WIDTH (percentages)
+   ======================= */
+.wd-0    { width: 0 !important; }
+.wd-25   { width: 25% !important; }
+.wd-33   { width: 33.3333% !important; }  /* one third */
+.wd-50   { width: 50% !important; }
+.wd-66   { width: 66.6667% !important; }  /* two thirds */
+.wd-75   { width: 75% !important; }
+.wd-100  { width: 100% !important; }
+.wd-auto { width: auto !important; }
+
+.wd-fit  { width: fit-content !important; }
+.wd-min  { width: min-content !important; }
+.wd-max  { width: max-content !important; }
+
+/* =======================
+   HEIGHT (percentages)
+   ======================= */
+.ht-0    { height: 0 !important; }
+.ht-25   { height: 25% !important; }
+.ht-33   { height: 33.3333% !important; }
+.ht-50   { height: 50% !important; }
+.ht-66   { height: 66.6667% !important; }
+.ht-75   { height: 75% !important; }
+.ht-100  { height: 100% !important; }
+.ht-auto { height: auto !important; }
+
+/* =======================
+   VIEWPORT FILL
+   ======================= */
+.vh-100 { height: 100vh !important; }
+.vw-100 { width: 100vw !important; }
+
+/* =======================
+   MIN/MAX WIDTH
+   ======================= */
+.mnw-0    { min-width: 0 !important; }
+.mnw-25   { min-width: 25% !important; }
+.mnw-50   { min-width: 50% !important; }
+.mnw-75   { min-width: 75% !important; }
+.mnw-100  { min-width: 100% !important; }
+.mnw-auto { min-width: auto !important; } /* useful for resetting constraints */
+
+.mxw-0    { max-width: 0 !important; }
+.mxw-25   { max-width: 25% !important; }
+.mxw-50   { max-width: 50% !important; }
+.mxw-75   { max-width: 75% !important; }
+.mxw-100  { max-width: 100% !important; }
+.mxw-none { max-width: none !important; } /* remove max constraints */
+
+/* Handy content-fit max widths for common patterns */
+.mxw-fit   { max-width: fit-content !important; }
+.mxw-min   { max-width: min-content !important; }
+.mxw-max   { max-width: max-content !important; }
+
+/* =======================
+   MIN/MAX HEIGHT
+   ======================= */
+.mnh-0    { min-height: 0 !important; }
+.mnh-25   { min-height: 25% !important; }
+.mnh-50   { min-height: 50% !important; }
+.mnh-75   { min-height: 75% !important; }
+.mnh-100  { min-height: 100% !important; }
+.mnh-auto { min-height: auto !important; }
+
+.mxh-0    { max-height: 0 !important; }
+.mxh-25   { max-height: 25% !important; }
+.mxh-50   { max-height: 50% !important; }
+.mxh-75   { max-height: 75% !important; }
+.mxh-100  { max-height: 100% !important; }
+.mxh-none { max-height: none !important; }
+
+/* =======================
+   FIXED LENGTHS (rem)
+   ======================= */
+/* Width fixed */
+.wdf-0 { width: var(--pg-len-0) !important; }
+.wdf-1 { width: var(--pg-len-1) !important; }
+.wdf-2 { width: var(--pg-len-2) !important; }
+.wdf-3 { width: var(--pg-len-3) !important; }
+.wdf-4 { width: var(--pg-len-4) !important; }
+.wdf-5 { width: var(--pg-len-5) !important; }
+.wdf-6 { width: var(--pg-len-6) !important; }
+.wdf-7 { width: var(--pg-len-7) !important; }
+.wdf-8 { width: var(--pg-len-8) !important; }
+
+/* Height fixed */
+.htf-0 { height: var(--pg-len-0) !important; }
+.htf-1 { height: var(--pg-len-1) !important; }
+.htf-2 { height: var(--pg-len-2) !important; }
+.htf-3 { height: var(--pg-len-3) !important; }
+.htf-4 { height: var(--pg-len-4) !important; }
+.htf-5 { height: var(--pg-len-5) !important; }
+.htf-6 { height: var(--pg-len-6) !important; }
+.htf-7 { height: var(--pg-len-7) !important; }
+.htf-8 { height: var(--pg-len-8) !important; }
+
+/* Square (width & height) */
+.sz-0 { width: var(--pg-len-0) !important; height: var(--pg-len-0) !important; }
+.sz-1 { width: var(--pg-len-1) !important; height: var(--pg-len-1) !important; }
+.sz-2 { width: var(--pg-len-2) !important; height: var(--pg-len-2) !important; }
+.sz-3 { width: var(--pg-len-3) !important; height: var(--pg-len-3) !important; }
+.sz-4 { width: var(--pg-len-4) !important; height: var(--pg-len-4) !important; }
+.sz-5 { width: var(--pg-len-5) !important; height: var(--pg-len-5) !important; }
+.sz-6 { width: var(--pg-len-6) !important; height: var(--pg-len-6) !important; }
+.sz-7 { width: var(--pg-len-7) !important; height: var(--pg-len-7) !important; }
+.sz-8 { width: var(--pg-len-8) !important; height: var(--pg-len-8) !important; }
+
+/* =======================
+   COMMON PATTERNS
+   ======================= */
+/* Full-bleed element */
+.full-bleed {
+  width: 100vw !important;
+  margin-left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+/* Intrinsic media helpers */
+.fit-cover  { object-fit: cover !important; }
+.fit-contain{ object-fit: contain !important; }
+.fit-fill   { object-fit: fill !important; }
+.fit-scale  { object-fit: scale-down !important; }
+.fit-none   { object-fit: none !important; }

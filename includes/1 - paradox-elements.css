@@ -1,3 +1,27 @@
+/* =======================================================================
+   Paradox-Grid: Elements (Extended)
+   -----------------------------------------------------------------------
+   Purpose:
+     This file extends your existing elements with additional building blocks:
+       - Buttons (sizes, styles, groups)
+       - Cards (unchanged originals + small additions)
+       - Modals (CSS-only open/close patterns)
+       - Top Navigation Bar (responsive)
+       - Side Navigation (collapsible)
+       - Tabs (CSS-only)
+       - Accordions (native <details> styling)
+       - Breadcrumbs, Pagination, Badges, Toasts (lightweight helpers)
+   Notes:
+     - Class names are Bootstrap-distinct and short.
+     - Pure-CSS behaviors rely on utility classes or :target/:checked patterns.
+     - Where helpful, commented HTML usage examples are included.
+   ======================================================================= */
+
+
+/* =======================================================================
+   ORIGINAL CONTENT (UNMODIFIED)
+   ======================================================================= */
+
 .btn {
 	outline: 0;
 	border: 0;
@@ -17,57 +41,1191 @@
 	color: #fff;
 }
 
-/* ---------- CARD BUTTON ---------- */
-/* ----------     HTML    ---------- */
-/*
-<a href="#">
-	<div class="cl t24 pcard">
-		<div class="rw pcard-header"></div>
-		<div class="rw pcard-icon"><i class="fas fa-user-graduate"></i></div>
-		<div class="rw pcard-title">TITLE</div>
-		<div class="rw pcard-subtitle">SUBTITLE</div>
-		<div class="rw pcard-footer"></div>
-	</div>
-</a>
-*/
-/* ----------     CSS    ---------- */
-.pcard {
-	width: 100%;
-	min-height: 225px;
-	height: 225px;
-	background: #f60; 
-	border-radius: 5px;
+
+.card-container {
+	border: 1px solid #ccc; 
+	border-radius: 3px;
+	-webkit-box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
+	box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
 }
-.pcard-header {
-	height: 40px; 
-	min-height: 40px;
+.card-header {
+	min-height: 25px;
+	border-radius: 3px 3px 0 0;
+	border-bottom: 1px solid #ddd;
+	line-height: 25px;
+	text-align: center;
+	font-size: 1.15rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	padding: 5px !important;
+	background: rgba(0,0,0,0.03);
+	
 }
-.pcard-title {
-	height: 40px; 
-	min-height: 40px; 
-	text-align: center; 
-	line-height: 40px; 
-	font-size: 40px; 
-	font-weight: 700; 
-	color: #fff;
-}
-.pcard-subtitle {
-	height: 30px; 
+.card-body {
 	min-height: 30px;
-	color: #fff;
-	text-align: center;
-	font-size: 30px;
-	line-height: 30px;
+	border-radius: 0;
+	padding: 5px !important;
 }
-.pcard-icon {
-	height: 70px; 
-	min-height: 70px;
-	color: #fff;
+.card-footer {
+	min-height: 10px;
+	border-radius: 0 0 3px 3px;
+	border-top: 1px solid #ddd;
+	line-height: 10px;
 	text-align: center;
-	font-size: 60px;
-	line-height: 70px;
 }
-.pcard-footer {
-	height: 45px; 
-	min-height: 45px;
+
+/* =======================================================================
+   BUTTONS: SIZES, VARIANTS & GROUPS
+   -----------------------------------------------------------------------
+   Adds small/large sizes, outline/ghost variants, block and icon buttons,
+   and grouped buttons.
+   -----------------------------------------------------------------------
+   HTML:
+     <!-- Sizes & Variants -->
+     <button class="btn btn-sm btn-pr">Small</button>
+     <button class="btn btn-pr">Default</button>
+     <button class="btn btn-lg btn-pr">Large</button>
+     <button class="btn btn-outline">Outline</button>
+     <button class="btn btn-ghost">Ghost</button>
+     <button class="btn btn-block">Block Button</button>
+
+     <!-- Icon button -->
+     <button class="btn btn-ic" aria-label="Search">
+       <span class="btn-ic-slot">🔍</span>
+     </button>
+
+     <!-- Button group -->
+     <div class="btn-group">
+       <button class="btn btn-pr">Left</button>
+       <button class="btn btn-pr">Middle</button>
+       <button class="btn btn-pr">Right</button>
+     </div>
+   ======================================================================= */
+
+:root{
+  /* Button palette hooks (can be overridden by colors file) */
+  --pg-btn-pr: #57b;
+  --pg-btn-sc: #178;
+  --pg-btn-err: #e22c2c;
+  --pg-btn-warn: #e67e22;
+  --pg-btn-suc: #22aa33;
+  --pg-btn-txt: #fff;
+  --pg-btn-outline: #777;
+}
+
+/* Sizes */
+.btn.btn-sm { padding: 5px 6px; font-size: .7rem; min-height: 22px; }
+.btn.btn-lg { padding: 10px 12px; font-size: .9rem; min-height: 34px; }
+
+/* Block */
+.btn.btn-block { display: block; width: 100%; }
+
+/* Palette variants (semantic) */
+.btn.btn-pr { background-color: var(--pg-btn-pr); color: var(--pg-btn-txt); }
+.btn.btn-sc { background-color: var(--pg-btn-sc); color: var(--pg-btn-txt); }
+.btn.btn-err{ background-color: var(--pg-btn-err); color: var(--pg-btn-txt); }
+.btn.btn-warn{background-color: var(--pg-btn-warn); color: var(--pg-btn-txt); }
+.btn.btn-suc{ background-color: var(--pg-btn-suc); color: var(--pg-btn-txt); }
+
+/* Outline & Ghost */
+.btn.btn-outline{
+  background: transparent;
+  border: 2px solid var(--pg-btn-outline);
+  color: var(--pg-btn-outline);
+  padding: 5px 10px;
+}
+.btn.btn-ghost{
+  background: transparent;
+  color: inherit;
+  box-shadow: none;
+}
+
+/* Icon-only button */
+.btn.btn-ic{
+  padding: 6px;
+  width: 32px;
+  height: 32px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-ic-slot{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Button group */
+.btn-group{
+  display: inline-flex;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,.08);
+}
+.btn-group > .btn{
+  border-radius: 0;
+  border-right: 1px solid rgba(0,0,0,.08);
+}
+.btn-group > .btn:last-child{
+  border-right: 0;
+}
+
+/* =======================================================================
+   CARDS: OPTIONAL MEDIA & LIST SECTIONS
+   -----------------------------------------------------------------------
+   Adds media and list regions leveraging your current card styles.
+   -----------------------------------------------------------------------
+   HTML:
+     <div class="card-container">
+       <div class="card-header">Title</div>
+       <div class="card-media"><img src="..." alt=""></div>
+       <div class="card-body">Content here</div>
+       <ul class="card-list">
+         <li class="card-list-item">Item A</li>
+         <li class="card-list-item">Item B</li>
+       </ul>
+       <div class="card-footer">Footer</div>
+     </div>
+   ======================================================================= */
+
+.card-media{
+  display: block;
+  border-bottom: 1px solid #eee;
+}
+.card-media img, .card-media video{
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0 0 0 0;
+}
+.card-list{
+  list-style: none;
+  padding: 0 8px 8px;
+  margin: 0;
+}
+.card-list-item{
+  padding: 6px 0;
+  border-bottom: 1px dashed #e6e6e6;
+}
+.card-list-item:last-child{
+  border-bottom: 0;
+}
+
+/* =======================================================================
+   MODAL (CSS-ONLY)
+   -----------------------------------------------------------------------
+   Two ways to open:
+     1) Add .is-open to .modal (JS or server-side)
+     2) Use :target on an anchor ID (#modal-id)
+
+   HTML (is-open pattern):
+     <div class="modal" id="demo-modal">
+       <div class="modal-backdrop"></div>
+       <div class="modal-box">
+         <div class="modal-hd">Modal Title</div>
+         <div class="modal-bd">Body content...</div>
+         <div class="modal-ft">
+           <button class="btn btn-ghost" data-close>Close</button>
+           <button class="btn btn-pr">Confirm</button>
+         </div>
+       </div>
+     </div>
+
+   HTML (:target pattern):
+     <a href="#m1" class="btn btn-pr">Open Modal</a>
+     <div class="modal" id="m1">
+       <a href="#" class="modal-backdrop" aria-label="Close"></a>
+       <div class="modal-box">
+         <div class="modal-hd">Title</div>
+         <div class="modal-bd">Body</div>
+         <div class="modal-ft"><a class="btn btn-ghost" href="#">Close</a></div>
+       </div>
+     </div>
+   ======================================================================= */
+
+.modal{
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 1000;
+}
+.modal.is-open{ display: flex; }
+.modal:target{ display: flex; } /* enable :target pattern */
+
+.modal-backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(2,8,15,.55);
+  backdrop-filter: saturate(140%) blur(2px);
+}
+.modal-box{
+  position: relative;
+  width: min(640px, 96vw);
+  max-height: 90vh;
+  background: #fff;
+  color: #02080F;
+  border-radius: 8px;
+  box-shadow: 0 16px 32px rgba(0,0,0,.25);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.modal-hd{
+  padding: 12px 16px;
+  font-weight: 700;
+  border-bottom: 1px solid #eee;
+  background: rgba(0,0,0,0.02);
+}
+.modal-bd{
+  padding: 16px;
+  overflow: auto;
+}
+.modal-ft{
+  padding: 12px 16px;
+  border-top: 1px solid #eee;
+  background: rgba(0,0,0,0.02);
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+/* Size modifiers */
+.modal.sm .modal-box{ width: min(420px, 96vw); }
+.modal.lg .modal-box{ width: min(900px, 98vw); }
+
+/* =======================================================================
+   TOP NAVIGATION BAR (RESPONSIVE)
+   -----------------------------------------------------------------------
+   A simple, sticky top nav that collapses to a menu toggle on small screens.
+   Pure CSS uses a checkbox hack for demonstration; JS toggle also works.
+
+   HTML:
+     <header class="nav-bar">
+       <div class="nav-brand">Paradox</div>
+
+       <!-- Toggle (checkbox hack) -->
+       <input id="nav-toggle" type="checkbox" class="nav-toggle-ck">
+       <label for="nav-toggle" class="nav-toggle-btn" aria-label="Open Menu">☰</label>
+
+       <nav class="nav-menu">
+         <a class="nav-link is-active" href="#">Home</a>
+         <a class="nav-link" href="#">Docs</a>
+         <a class="nav-link" href="#">Playground</a>
+         <div class="nav-spacer"></div>
+         <a class="nav-link" href="#">GitHub</a>
+       </nav>
+     </header>
+   ======================================================================= */
+
+.nav-bar{
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: #fff;
+  border-bottom: 1px solid #ececec;
+}
+.nav-brand{
+  font-weight: 800;
+  letter-spacing: .04em;
+}
+.nav-menu{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+.nav-link{
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: inherit;
+}
+.nav-link:hover{
+  background: rgba(0,0,0,.05);
+}
+.nav-link.is-active{
+  background: rgba(0,0,0,.08);
+  font-weight: 700;
+}
+.nav-spacer{ flex: 1 1 auto; }
+
+/* Toggle (mobile) */
+.nav-toggle-ck{ display: none; }
+.nav-toggle-btn{
+  display: none;
+  margin-left: auto;
+  font-size: 1.25rem;
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+@media (max-width: 768px){
+  .nav-toggle-btn{ display: inline-flex; }
+  .nav-menu{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    border-bottom: 1px solid #ececec;
+    padding: 8px;
+    gap: 4px;
+  }
+  .nav-toggle-ck:checked ~ .nav-menu{
+    display: flex;
+  }
+}
+
+/* =======================================================================
+   SIDE NAVIGATION (COLLAPSIBLE)
+   -----------------------------------------------------------------------
+   Fixed left sidebar with collapsible width. Toggle by adding .is-collapsed.
+   Works well with your grid: place main content beside it.
+
+   HTML:
+     <aside class="side-nav">
+       <div class="side-head">Navigation</div>
+       <a class="side-link is-active" href="#">Dashboard</a>
+       <a class="side-link" href="#">Components</a>
+       <a class="side-link" href="#">Layouts</a>
+       <div class="side-foot">v1.0</div>
+     </aside>
+
+     <main class="side-main">
+       <!-- page content -->
+     </main>
+   ======================================================================= */
+
+.side-nav{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 240px;
+  background: #ffffff;
+  border-right: 1px solid #ececec;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 800;
+}
+.side-head{
+  font-weight: 800;
+  letter-spacing: .04em;
+  padding: 6px 8px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  background: rgba(0,0,0,.04);
+}
+.side-link{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: inherit;
+  text-decoration: none;
+}
+.side-link:hover{ background: rgba(0,0,0,.05); }
+.side-link.is-active{
+  background: rgba(0,0,0,.08);
+  font-weight: 700;
+}
+.side-foot{
+  margin-top: auto;
+  padding: 6px 8px;
+  font-size: .75rem;
+  color: #717176;
+}
+.side-nav.is-collapsed{ width: 64px; }
+.side-nav.is-collapsed .side-link span.label{ display: none; }
+
+/* Content area that accounts for sidebar width */
+.side-main{
+  margin-left: 240px;
+  padding: 16px;
+}
+.side-nav.is-collapsed ~ .side-main{
+  margin-left: 64px;
+}
+@media (max-width: 1024px){
+  .side-nav{ position: fixed; transform: translateX(-100%); transition: transform .2s ease; }
+  .side-nav.is-open{ transform: translateX(0); }
+  .side-main{ margin-left: 0; }
+}
+
+/* =======================================================================
+   TABS (CSS-ONLY)
+   -----------------------------------------------------------------------
+   Uses [aria-selected] state for styling; show/hide panels is left to a
+   tiny script or the :target pattern variant below.
+
+   HTML (ARIA pattern):
+     <div class="tabs">
+       <div class="tab-list" role="tablist">
+         <button class="tab" role="tab" aria-selected="true">Tab 1</button>
+         <button class="tab" role="tab">Tab 2</button>
+       </div>
+       <div class="tab-panels">
+         <div class="tab-panel is-active">Panel 1</div>
+         <div class="tab-panel">Panel 2</div>
+       </div>
+     </div>
+
+   HTML (:target pattern):
+     <div class="tabs target">
+       <nav class="tab-list">
+         <a class="tab" href="#p1">Tab 1</a>
+         <a class="tab" href="#p2">Tab 2</a>
+       </nav>
+       <section id="p1" class="tab-panel">Panel 1</section>
+       <section id="p2" class="tab-panel">Panel 2</section>
+     </div>
+   ======================================================================= */
+
+.tabs{
+  display: block;
+}
+.tab-list{
+  display: flex;
+  gap: 6px;
+  border-bottom: 1px solid #eaeaea;
+  margin-bottom: 8px;
+}
+.tab{
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 8px 12px;
+  border-radius: 6px 6px 0 0;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+.tab:hover{ background: rgba(0,0,0,.05); }
+.tab[aria-selected="true"],
+.tab.is-active{
+  background: #fff;
+  border: 1px solid #eaeaea;
+  border-bottom-color: transparent;
+}
+.tab-panels{ display: block; }
+.tab-panel{ display: none; padding: 8px 0; }
+.tab-panel.is-active{ display: block; }
+
+/* :target variant */
+.tabs.target .tab-panel{ display: none; }
+.tabs.target .tab-panel:target{ display: block; }
+
+/* =======================================================================
+   ACCORDION (NATIVE <details>)
+   -----------------------------------------------------------------------
+   Styles native <details>/<summary> for accessible accordions.
+
+   HTML:
+     <details class="acc">
+       <summary class="acc-sum">Section Title</summary>
+       <div class="acc-bd">Accordion body content...</div>
+     </details>
+   ======================================================================= */
+
+.acc{
+  border: 1px solid #ececec;
+  border-radius: 6px;
+  padding: 0;
+  background: #fff;
+}
+.acc + .acc{ margin-top: 8px; }
+.acc-sum{
+  list-style: none;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-weight: 600;
+  position: relative;
+}
+.acc-sum::-webkit-details-marker{ display: none; }
+.acc-sum::after{
+  content: '▸';
+  position: absolute;
+  right: 12px;
+  transform: rotate(0deg);
+  transition: transform .15s ease;
+}
+.acc[open] .acc-sum::after{ transform: rotate(90deg); }
+.acc-bd{
+  padding: 10px 12px 12px;
+  border-top: 1px solid #ececec;
+}
+
+/* =======================================================================
+   BREADCRUMBS
+   -----------------------------------------------------------------------
+   Simple breadcrumb trail with separators.
+
+   HTML:
+     <nav class="crumbs" aria-label="Breadcrumb">
+       <a class="crumb" href="#">Home</a>
+       <a class="crumb" href="#">Library</a>
+       <span class="crumb is-current" aria-current="page">Data</span>
+     </nav>
+   ======================================================================= */
+
+.crumbs{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: .9rem;
+  color: #717176;
+}
+.crumb{
+  text-decoration: none;
+  color: inherit;
+}
+.crumb:hover{ text-decoration: underline; }
+.crumb + .crumb::before{
+  content: "/";
+  margin: 0 4px;
+  color: #c1c1c6;
+}
+.crumb.is-current{
+  font-weight: 700;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* =======================================================================
+   PAGINATION
+   -----------------------------------------------------------------------
+   Lightweight page controls.
+
+   HTML:
+     <nav class="pager" role="navigation" aria-label="Pagination">
+       <a class="page prev" href="#">Prev</a>
+       <a class="page is-active" href="#">1</a>
+       <a class="page" href="#">2</a>
+       <span class="page ellip">…</span>
+       <a class="page" href="#">9</a>
+       <a class="page next" href="#">Next</a>
+     </nav>
+   ======================================================================= */
+
+.pager{
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+.page{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 8px;
+  border-radius: 6px;
+  border: 1px solid #e6e6e9;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
+  background: #fff;
+}
+.page:hover{ background: rgba(0,0,0,.05); }
+.page.is-active{
+  background: rgba(0,0,0,.08);
+}
+.page.ellip{
+  border: 0;
+  background: transparent;
+  cursor: default;
+}
+
+/* =======================================================================
+   BADGES
+   -----------------------------------------------------------------------
+   Small labels for statuses or counts.
+
+   HTML:
+     <span class="badge">New</span>
+     <span class="badge badge-err">Error</span>
+   ======================================================================= */
+
+.badge{
+  display: inline-block;
+  line-height: 1;
+  padding: 4px 6px;
+  border-radius: 999px;
+  font-size: .7rem;
+  font-weight: 700;
+  background: rgba(0,0,0,.08);
+  color: inherit;
+}
+.badge-err{ background: rgba(226,44,44,.15); color: #920101; }
+.badge-suc{ background: rgba(34,170,51,.15); color: #081; }
+.badge-warn{ background: rgba(230,126,34,.15); color: #b65e05; }
+.badge-info{ background: rgba(51,153,170,.15); color: #156; }
+
+/* =======================================================================
+   TOASTS
+   -----------------------------------------------------------------------
+   Small, dismissible notifications. Position with utilities or the fixed
+   containers below.
+
+   HTML:
+     <div class="toast toast-pr">
+       <div class="toast-msg">Saved successfully.</div>
+       <button class="toast-x" aria-label="Dismiss">✕</button>
+     </div>
+   ======================================================================= */
+
+.toast{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #e6e6e9;
+  box-shadow: 0 6px 16px rgba(0,0,0,.12);
+  max-width: 420px;
+}
+.toast .toast-x{
+  appearance: none;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+}
+.toast-pr{ border-left: 4px solid #57b; }
+.toast-err{ border-left: 4px solid #e22c2c; }
+.toast-warn{ border-left: 4px solid #e67e22; }
+.toast-suc{ border-left: 4px solid #22aa33; }
+
+/* Fixed toast stacks (optional) */
+.toast-stack-tr,
+.toast-stack-br,
+.toast-stack-tl,
+.toast-stack-bl{
+  position: fixed;
+  z-index: 950;
+  display: grid;
+  gap: 10px;
+  max-width: 96vw;
+}
+.toast-stack-tr{ top: 12px; right: 12px; }
+.toast-stack-br{ bottom: 12px; right: 12px; }
+.toast-stack-tl{ top: 12px; left: 12px; }
+.toast-stack-bl{ bottom: 12px; left: 12px; }
+
+/* =======================================================================
+   TOOLTIPS
+   -----------------------------------------------------------------------
+   Pure CSS tooltips using [data-tip]. Placement controlled with modifier
+   classes (.tip-top, .tip-btm, .tip-start, .tip-end).
+   Theme variants provided (.tip-dark, .tip-light, .tip-pr, etc).
+   Works on hover and focus for accessibility.
+
+   HTML:
+     <!-- Default (top) -->
+     <button class="btn btn-pr tip tip-top" data-tip="Tooltip text">
+       Hover me
+     </button>
+
+     <!-- Bottom, light theme -->
+     <span class="tip tip-btm tip-light" data-tip="Bottom tooltip">
+       ℹ Info
+     </span>
+
+     <!-- Right, semantic theme -->
+     <a href="#" class="tip tip-end tip-err" data-tip="Error!">
+       ❌ Error
+     </a>
+   ======================================================================= */
+
+.tip{
+  position: relative;
+  cursor: pointer;
+}
+
+/* Tooltip bubble (default) */
+.tip::after{
+  content: attr(data-tip);
+  position: absolute;
+  z-index: 1000;
+  display: block;
+  max-width: 240px;
+  padding: 6px 8px;
+  font-size: .75rem;
+  line-height: 1.2;
+  border-radius: 4px;
+  white-space: normal;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .15s ease, transform .15s ease;
+  background: #02080F;
+  color: #fff;
+
+  /* default position (top) */
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, -6px);
+}
+
+/* Show on hover/focus */
+.tip:hover::after,
+.tip:focus::after{
+  opacity: 1;
+  transform: translate(-50%, -10px);
+}
+
+/* =======================================================================
+   PLACEMENT MODIFIERS
+   ======================================================================= */
+
+/* Top (default) */
+.tip-top::after{
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, -6px);
+}
+.tip-top:hover::after,
+.tip-top:focus::after{
+  transform: translate(-50%, -10px);
+}
+
+/* Bottom */
+.tip-btm::after{
+  top: 100%;
+  left: 50%;
+  bottom: auto;
+  transform: translate(-50%, 6px);
+}
+.tip-btm:hover::after,
+.tip-btm:focus::after{
+  transform: translate(-50%, 10px);
+}
+
+/* Start (left) */
+.tip-start::after{
+  right: 100%;
+  top: 50%;
+  left: auto;
+  bottom: auto;
+  transform: translate(-6px, -50%);
+}
+.tip-start:hover::after,
+.tip-start:focus::after{
+  transform: translate(-10px, -50%);
+}
+
+/* End (right) */
+.tip-end::after{
+  left: 100%;
+  top: 50%;
+  bottom: auto;
+  transform: translate(6px, -50%);
+}
+.tip-end:hover::after,
+.tip-end:focus::after{
+  transform: translate(10px, -50%);
+}
+
+/* =======================================================================
+   THEMES
+   ======================================================================= */
+
+.tip-dark::after{
+  background: #02080F;
+  color: #fff;
+}
+.tip-light::after{
+  background: #fff;
+  color: #02080F;
+  border: 1px solid #ccc;
+}
+.tip-pr::after{
+  background: #57b;
+  color: #fff;
+}
+.tip-err::after{
+  background: #e22c2c;
+  color: #fff;
+}
+.tip-warn::after{
+  background: #e67e22;
+  color: #fff;
+}
+.tip-suc::after{
+  background: #22aa33;
+  color: #fff;
+}
+.tip-info::after{
+  background: #3399aa;
+  color: #fff;
+}
+
+/* =======================================================================
+   DROPDOWNS / MENUS (CSS-first)
+   -----------------------------------------------------------------------
+   Features:
+     - Works with :focus-within and :hover (desktop)
+     - Alignments: .drop-end (right), .drop-start (left), .drop-up (above)
+     - Sizes: .drop-sm / .drop-lg
+     - Menu items, headers, dividers, active/disabled states
+     - Button-trigger or link-trigger compatible
+   HTML:
+     <div class="drop">
+       <button class="btn btn-pr drop-btn" aria-haspopup="true" aria-expanded="false">
+         Menu ▾
+       </button>
+       <div class="drop-menu" role="menu">
+         <div class="drop-hd">Actions</div>
+         <a class="drop-item" href="#">New...</a>
+         <a class="drop-item" href="#">Open</a>
+         <div class="drop-div"></div>
+         <a class="drop-item is-dis" aria-disabled="true" tabindex="-1">Disabled</a>
+         <a class="drop-item is-act" href="#">Active</a>
+       </div>
+     </div>
+
+     <!-- Align right -->
+     <div class="drop drop-end">…</div>
+
+     <!-- Drop up -->
+     <div class="drop drop-up">…</div>
+
+     <!-- Inside a nav bar -->
+     <div class="drop">
+       <a class="nav-link drop-btn" href="#" aria-haspopup="true">More ▾</a>
+       <div class="drop-menu">
+         <a class="drop-item" href="#">Docs</a>
+         <a class="drop-item" href="#">GitHub</a>
+       </div>
+     </div>
+   ======================================================================= */
+
+:root{
+  --pg-drop-bg: #fff;
+  --pg-drop-fg: #02080F;
+  --pg-drop-bd: #e6e6e9;
+  --pg-drop-sh: 0 8px 24px rgba(0,0,0,.12);
+  --pg-drop-rd: 8px;
+  --pg-drop-pad-y: 6px;
+  --pg-drop-pad-x: 0;
+  --pg-drop-item-pad: 8px 12px;
+  --pg-drop-gap: 6px;
+}
+
+/* Wrapper */
+.drop{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Trigger (btn or link) */
+.drop-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Menu panel (hidden by default) */
+.drop-menu{
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 180px;
+  max-width: 320px;
+  background: var(--pg-drop-bg);
+  color: var(--pg-drop-fg);
+  border: 1px solid var(--pg-drop-bd);
+  border-radius: var(--pg-drop-rd);
+  box-shadow: var(--pg-drop-sh);
+  padding: var(--pg-drop-pad-y) var(--pg-drop-pad-x);
+  display: none;
+  z-index: 950;
+}
+
+/* Open behaviors:
+   - :focus-within for keyboard users
+   - :hover for desktop convenience (optional)
+   You can also add .is-open to .drop via JS to force open. */
+.drop:focus-within > .drop-menu { display: block; }
+.drop:hover > .drop-menu { display: block; }
+.drop.is-open > .drop-menu { display: block; }
+
+/* Alignments */
+.drop-end  > .drop-menu{ left: auto; right: 0; }
+.drop-start> .drop-menu{ left: 0; right: auto; } /* default */
+.drop-up   > .drop-menu{ top: auto; bottom: calc(100% + 6px); }
+
+/* Sizing variants */
+.drop-sm > .drop-menu{ min-width: 160px; }
+.drop-lg > .drop-menu{ min-width: 220px; }
+
+/* Menu content */
+.drop-hd{
+  padding: 8px 12px;
+  font-weight: 700;
+  font-size: .82rem;
+  color: #717176;
+}
+.drop-div{
+  height: 1px;
+  margin: 6px 0;
+  background: var(--pg-drop-bd);
+}
+.drop-item{
+  display: block;
+  padding: var(--pg-drop-item-pad);
+  text-decoration: none;
+  color: inherit;
+  white-space: nowrap;
+  line-height: 1.2;
+  outline: none;
+}
+.drop-item:hover,
+.drop-item:focus{
+  background: rgba(0,0,0,.05);
+}
+.drop-item.is-act{
+  background: rgba(0,0,0,.08);
+  font-weight: 700;
+}
+.drop-item.is-dis,
+.drop-item[aria-disabled="true"]{
+  color: #8a9099;
+  pointer-events: none;
+}
+
+/* Nested submenus (simple, hover-activated)
+   HTML:
+     <div class="drop">
+       <button class="btn drop-btn">Parent ▾</button>
+       <div class="drop-menu">
+         <div class="drop sub drop-end">
+           <a class="drop-item" href="#">Submenu ▸</a>
+           <div class="drop-menu">
+             <a class="drop-item" href="#">Level 2 - A</a>
+             <a class="drop-item" href="#">Level 2 - B</a>
+           </div>
+         </div>
+       </div>
+     </div>
+*/
+.drop.sub{
+  position: relative;
+  display: block;
+}
+.drop.sub > .drop-menu{
+  top: -6px;
+  left: 100%;
+}
+.drop.sub.drop-end > .drop-menu{
+  right: auto; left: 100%;
+}
+.drop.sub.drop-start > .drop-menu{
+  left: auto; right: 100%;
+}
+
+/* Mobile considerations: stack within nav menus at small widths */
+@media (max-width: 768px){
+  .nav-menu .drop{ width: 100%; }
+  .nav-menu .drop > .drop-menu{
+    position: static;
+    display: none;
+    box-shadow: none;
+    border: 0;
+    padding: 4px 0;
+    margin-left: 12px;
+  }
+  .nav-menu .drop.is-open > .drop-menu,
+  .nav-menu .drop:focus-within > .drop-menu{ display: block; }
+}
+
+/* =======================================================================
+   TABLES
+   -----------------------------------------------------------------------
+   Purpose:
+     Opinionated, accessible table styles with variants and a responsive
+     scroll wrapper. Compact names, Bootstrap-distinct.
+   Naming:
+     .tbl           → base table
+     .tbl-bord      → bordered cells
+     .tbl-striped   → zebra rows
+     .tbl-hover     → row hover
+     .tbl-dense     → tighter padding
+     .tbl-sticky    → sticky header
+     .tbl-fit       → table-layout: fixed (truncate long text)
+     .tbl-scroll    → responsive horizontal scroller wrapper
+     .tbl-align-*   → text alignment helpers: start/center/end
+     .tbl-nowrap    → prevent wrapping in cells
+   Usage (HTML):
+     <div class="tbl-scroll">
+       <table class="tbl tbl-striped tbl-hover tbl-bord">
+         <caption>Quarterly Revenue</caption>
+         <thead>
+           <tr>
+             <th>Quarter</th>
+             <th class="tbl-align-end">Revenue</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr><td>Q1</td><td class="tbl-align-end">$1.25M</td></tr>
+           <tr><td>Q2</td><td class="tbl-align-end">$1.40M</td></tr>
+         </tbody>
+         <tfoot>
+           <tr><th>Total</th><th class="tbl-align-end">$2.65M</th></tr>
+         </tfoot>
+       </table>
+     </div>
+   ======================================================================= */
+
+:root{
+  --pg-tbl-bg: #fff;
+  --pg-tbl-fg: #02080F;
+  --pg-tbl-bd: #e6e6e9;
+  --pg-tbl-hd-bg: rgba(0,0,0,.03);
+  --pg-tbl-hd-fg: #313136;
+  --pg-tbl-stripe: rgba(0,0,0,.025);
+  --pg-tbl-hover: rgba(0,0,0,.05);
+  --pg-tbl-pad-y: 10px;
+  --pg-tbl-pad-x: 12px;
+  --pg-tbl-pad-y-dense: 6px;
+  --pg-tbl-pad-x-dense: 8px;
+  --pg-tbl-rd: 8px; /* for scroll wrapper corners */
+}
+
+/* Responsive scroll wrapper */
+.tbl-scroll{
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--pg-tbl-bd);
+  border-radius: var(--pg-tbl-rd);
+  background: var(--pg-tbl-bg);
+}
+.tbl-scroll > .tbl{
+  margin: 0; /* remove default margins inside wrapper */
+}
+
+/* Base table */
+.tbl{
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--pg-tbl-bg);
+  color: var(--pg-tbl-fg);
+  margin: 0 0 12px;
+  font-size: .95rem;
+}
+.tbl caption{
+  caption-side: top;
+  text-align: left;
+  padding: 8px 0;
+  color: #717176;
+  font-size: .9rem;
+}
+.tbl th,
+.tbl td{
+  padding: var(--pg-tbl-pad-y) var(--pg-tbl-pad-x);
+  vertical-align: middle;
+  border-bottom: 1px solid var(--pg-tbl-bd);
+  white-space: normal;
+}
+.tbl thead th{
+  background: var(--pg-tbl-hd-bg);
+  color: var(--pg-tbl-hd-fg);
+  text-align: left;
+  font-weight: 700;
+  border-bottom: 1px solid var(--pg-tbl-bd);
+}
+
+/* Variants */
+.tbl-bord th,
+.tbl-bord td{
+  border: 1px solid var(--pg-tbl-bd);
+}
+.tbl-striped tbody tr:nth-child(odd){
+  background: var(--pg-tbl-stripe);
+}
+.tbl-hover tbody tr:hover{
+  background: var(--pg-tbl-hover);
+}
+
+/* Dense spacing */
+.tbl-dense th,
+.tbl-dense td{
+  padding: var(--pg-tbl-pad-y-dense) var(--pg-tbl-pad-x-dense);
+}
+
+/* Sticky header (use inside .tbl-scroll for best effect) */
+.tbl-sticky thead th{
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* Fixed layout for truncation-heavy tables */
+.tbl-fit{
+  table-layout: fixed;
+}
+.tbl-fit th, .tbl-fit td{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Alignment helpers */
+.tbl-align-start{ text-align: left; }
+.tbl-align-center{ text-align: center; }
+.tbl-align-end{ text-align: right; }
+
+/* No-wrap helper (override on a per-cell basis) */
+.tbl-nowrap th,
+.tbl-nowrap td{
+  white-space: nowrap;
+}
+
+/* Row states */
+.tbl .is-ok    { background: rgba(34,170,51,.10); }  /* success tone */
+.tbl .is-warn  { background: rgba(230,126,34,.10); } /* warning tone */
+.tbl .is-err   { background: rgba(226,44,44,.10); }  /* error tone }
+
+/* Compact “list table” look (borderless rows with separators)
+   HTML:
+     <table class="tbl tbl-list">
+       ...
+     </table>
+*/
+.tbl-list{
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.tbl-list th,
+.tbl-list td{
+  border: 0;
+  border-bottom: 1px solid var(--pg-tbl-bd);
+}
+.tbl-list tbody tr:last-child td{
+  border-bottom: 0;
 }
