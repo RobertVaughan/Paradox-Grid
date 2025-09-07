@@ -3,8 +3,12 @@
 
 @import 'includes/0 - normalize.css';
 @import 'includes/1 - paradox-borders.css';
+@import 'includes/1 - paradox-colors.css';
+@import 'includes/1 - paradox-elements.css';
+@import 'includes/1 - paradox-forms.css';
 @import 'includes/1 - paradox-sizing.css';
 @import 'includes/1 - paradox-spacing.css';
+@import 'includes/1 - paradox-themes.css';
 @import 'includes/1 - paradox-typography.css';
 @import 'includes/1 - paradox-utilities.css';
 @import 'includes/2 - paradox-xs.css';

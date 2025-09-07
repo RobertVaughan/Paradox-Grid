@@ -14,55 +14,88 @@
      - Add data-toggle="selector" to toggle .is-open on a target.
    ======================================================================= */
 
-(function () {
-  // ----------------------------
-  // THEME MANAGER
-  // ----------------------------
-  const KEY = "pg_theme"; // "auto" | "light" | "dark"
-  function applyTheme(mode) {
-    const root = document.documentElement;
-    if (mode === "light") {
-      root.setAttribute("data-theme", "light");
-    } else if (mode === "dark") {
-      root.setAttribute("data-theme", "dark");
-    } else {
-      root.removeAttribute("data-theme"); // auto
-    }
-  }
-  function loadTheme() {
-    return localStorage.getItem(KEY) || "auto";
-  }
-  function saveTheme(mode) {
-    localStorage.setItem(KEY, mode);
-  }
-  function cycleTheme() {
-    const cur = loadTheme();
-    const next = cur === "auto" ? "dark" : cur === "dark" ? "light" : "auto";
-    saveTheme(next);
-    applyTheme(next);
-    // Optional aria-live feedback
-    const btns = document.querySelectorAll("[data-pg-theme-toggle]");
-    btns.forEach((b) => (b.dataset.state = next));
-  }
+// ----------------------------
+// THEME MANAGER (robust)
+// ----------------------------
+(function(){
+  const KEY = "pg_theme"; // "auto" | "dark" | "light"
 
-  // Initialize on DOMReady
-  document.addEventListener("DOMContentLoaded", () => {
-    applyTheme(loadTheme());
+  const getMode = () => localStorage.getItem(KEY) || "auto";
+  const setMode = (mode) => { localStorage.setItem(KEY, mode); apply(mode); };
 
-    // Wire theme toggles
-    document.body.addEventListener("click", (e) => {
-      const t = e.target.closest("[data-pg-theme-toggle]");
-      if (t) {
-        e.preventDefault();
-        cycleTheme();
-      }
+  function apply(mode){
+    const root = document.documentElement; // <html>
+
+    // Attribute API (preferred)
+    if (mode === "dark") root.setAttribute("data-theme","dark");
+    else if (mode === "light") root.setAttribute("data-theme","light");
+    else root.removeAttribute("data-theme"); // auto
+
+    // Legacy class API (for older CSS that might be in your bundle)
+    root.classList.remove("theme-dark","theme-light");
+    if (mode === "dark") root.classList.add("theme-dark");
+    if (mode === "light") root.classList.add("theme-light");
+
+    // Reflect state on toggles
+    document.querySelectorAll("[data-pg-theme-toggle]").forEach(btn=>{
+      btn.dataset.state = mode;
+      btn.setAttribute("aria-pressed", mode !== "auto" ? "true" : "false");
+      btn.setAttribute("aria-label",
+        mode === "dark" ? "Switch to light theme" :
+        mode === "light" ? "Use system theme" :
+        "Switch to dark theme"
+      );
     });
 
-    // Set initial state data attr
-    document
-      .querySelectorAll("[data-pg-theme-toggle]")
-      .forEach((b) => (b.dataset.state = loadTheme()));
+    // Sync live example iframes (same-origin only)
+    const frames = document.querySelectorAll("iframe.ex-preview");
+    frames.forEach(f=>{
+      const doc = f.contentDocument;
+      if (!doc) return;
+      const html = doc.documentElement;
+      if (!html) return;
+
+      // Mirror the data-theme and legacy classes inside iframe
+      if (mode === "dark") html.setAttribute("data-theme","dark");
+      else if (mode === "light") html.setAttribute("data-theme","light");
+      else html.removeAttribute("data-theme");
+
+      html.classList.remove("theme-dark","theme-light");
+      if (mode === "dark") html.classList.add("theme-dark");
+      if (mode === "light") html.classList.add("theme-light");
+    });
+
+    // Broadcast (optional hooks)
+    window.dispatchEvent(new CustomEvent("pg:theme",{ detail:{ mode } }));
+  }
+
+  function cycle(){
+    const cur = getMode();
+    const next = cur === "auto" ? "dark" : (cur === "dark" ? "light" : "auto");
+    setMode(next);
+  }
+
+  document.addEventListener("DOMContentLoaded", ()=>{
+    apply(getMode());
+
+    // Delegated click handler
+    document.addEventListener("click",(e)=>{
+      const t = e.target.closest("[data-pg-theme-toggle]");
+      if (!t) return;
+      e.preventDefault();
+      cycle();
+    });
+
+    // Ensure iframes also sync after they load content later
+    document.querySelectorAll("iframe.ex-preview").forEach(f=>{
+      f.addEventListener("load", ()=> apply(getMode()));
+    });
   });
+
+  // Expose (optional)
+  window.pgTheme = { get:getMode, set:setMode, apply, cycle };
+})();
+
 
   // Expose (optional)
   window.pgTheme = { apply: applyTheme, load: loadTheme, set: (m) => (saveTheme(m), applyTheme(m)), cycle: cycleTheme };

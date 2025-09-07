@@ -410,64 +410,101 @@
      </main>
    ======================================================================= */
 
-.side-nav{
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 240px;
-  background: #ffffff;
-  border-right: 1px solid #ececec;
-  padding: 12px 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  z-index: 800;
+/* =======================================================================
+   Paradox-Grid • Side Nav (safe defaults)
+   Inline by default; overlay only with explicit variants.
+   Paste this AFTER any older side-nav rules in paradox.css.
+   ======================================================================= */
+
+/* ---- Base: inline in document flow ---- */
+.side-nav {
+  position: static !important;      /* cancel fixed/absolute from older rules */
+  inset: auto !important;
+  z-index: auto !important;
+  width: 100% !important;
+  height: auto !important;
+  overflow: visible !important;
+  border: 0;                         /* visual chrome comes from parent/card */
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  margin: 0;
 }
-.side-head{
-  font-weight: 800;
-  letter-spacing: .04em;
-  padding: 6px 8px;
-  margin-bottom: 6px;
-  border-radius: 6px;
-  background: rgba(0,0,0,.04);
-}
-.side-link{
-  display: flex;
-  align-items: center;
-  gap: 8px;
+
+.side-nav .nav-link {
+  display: block;
   padding: 8px 10px;
   border-radius: 6px;
   color: inherit;
   text-decoration: none;
+  line-height: 1.25;
 }
-.side-link:hover{ background: rgba(0,0,0,.05); }
-.side-link.is-active{
-  background: rgba(0,0,0,.08);
-  font-weight: 700;
-}
-.side-foot{
-  margin-top: auto;
-  padding: 6px 8px;
-  font-size: .75rem;
-  color: #717176;
-}
-.side-nav.is-collapsed{ width: 64px; }
-.side-nav.is-collapsed .side-link span.label{ display: none; }
+.side-nav .nav-link:hover { background: rgba(0,0,0,.06); }
+.side-nav .nav-link.is-active { font-weight: 700; background: rgba(0,0,0,.08); }
 
-/* Content area that accounts for sidebar width */
-.side-main{
-  margin-left: 240px;
-  padding: 16px;
+/* ---- Sticky (within its column) ---- */
+.side-nav.sticky {
+  position: sticky !important;
+  top: var(--pg-side-top, 72px);
+  max-height: calc(100vh - var(--pg-side-top, 72px) - 24px);
+  overflow: auto !important;
 }
-.side-nav.is-collapsed ~ .side-main{
-  margin-left: 64px;
+
+/* ---- Fixed (persistent rail) ---- */
+.side-nav.fixed {
+  position: fixed !important;
+  top: 0; bottom: 0; left: 0;
+  width: var(--pg-side-w, 260px);
+  z-index: 1000;
+  background: var(--pg-side-bg, #fff);
+  color: var(--pg-side-fg, #02080F);
+  border-right: 1px solid var(--pg-side-bd, #ececec);
+  box-shadow: var(--pg-sd-1, 0 1px 2px rgba(0,0,0,.08));
+  overflow: auto;
+  padding: 10px;
 }
-@media (max-width: 1024px){
-  .side-nav{ position: fixed; transform: translateX(-100%); transition: transform .2s ease; }
-  .side-nav.is-open{ transform: translateX(0); }
-  .side-main{ margin-left: 0; }
+/* Use one of these on <body> or your main wrapper with .fixed */
+.side-pad-l-200 { padding-left: 200px !important; }
+.side-pad-l-240 { padding-left: 240px !important; }
+.side-pad-l-260 { padding-left: 260px !important; }
+.side-pad-l-280 { padding-left: 280px !important; }
+.side-pad-l-320 { padding-left: 320px !important; }
+
+/* ---- Drawer (off-canvas) ---- */
+.side-nav.drawer {
+  position: fixed !important;
+  top: 0; bottom: 0; left: 0;
+  width: var(--pg-side-w, 260px);
+  transform: translateX(-100%);
+  transition: transform .22s ease, box-shadow .22s ease;
+  z-index: 1100;
+  background: var(--pg-side-bg, #fff);
+  color: var(--pg-side-fg, #02080F);
+  border-right: 1px solid var(--pg-side-bd, #ececec);
+  box-shadow: var(--pg-sd-1, 0 1px 2px rgba(0,0,0,.08));
+  overflow: auto;
+  padding: 10px;
 }
+.side-nav.drawer.is-open { transform: translateX(0); box-shadow: var(--pg-sd-2, 0 4px 8px rgba(0,0,0,.10)); }
+.side-nav.drawer.r { left: auto; right: 0; border-right: 0; border-left: 1px solid var(--pg-side-bd, #ececec); transform: translateX(100%); }
+.side-nav.drawer.r.is-open { transform: translateX(0); }
+
+.side-backdrop {
+  position: fixed; inset: 0;
+  background: var(--pg-backdrop, rgba(2,8,15,.55));
+  opacity: 0; pointer-events: none; transition: opacity .2s ease; z-index: 1099;
+}
+.side-backdrop.is-open { opacity: 1; pointer-events: auto; }
+
+@media (min-width: 992px){
+  .side-nav.drawer.lg-fixed { position: fixed !important; transform: none !important; left: 0; }
+  .side-nav.drawer.lg-fixed + .side-backdrop { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .side-nav.drawer { transition: none !important; }
+}
+
 
 /* =======================================================================
    TABS (CSS-ONLY)
